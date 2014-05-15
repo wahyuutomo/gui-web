@@ -5,6 +5,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Bootstrap -->
 <link href="css/custom.css" rel="stylesheet">
+<script type="text/javascript" src="/webiopi.js"></script>
+<script type="text/javascript" src="/toggle.js"></script>
+<script type="text/javascript">
+
+// declare global variables
+	var mcp;
+	var mcp2;
+	var mcp3;
+	webiopi().ready(init);
+	
+	// function init() defines function passed to webiopi().ready()
+    // NOTE* Change ("mcp") to the expander-name you designated in your config file
+        function init() {
+		mcp = new GPIOPort("mcp");
+        mcp2 = new GPIOPort("mcp2");
+		mcp3 = new GPIOPort("mcp3");
+		
+		// refresh UI each seconds
+		setInterval(updateUI, 3000);
+        }
+		
+		
+    // function called through setInterval
+    function updateUI() {
+	// call MCP.digitalRead 0 to 7 REST API
+		if (mcp.isReady()) {
+			for (var i=0;i<8;i++)
+			{
+			mcp.digitalRead(i, DigitalCallback);	 
+			mcp2.digitalRead(i, DigitalCallback2);
+			mcp3.digitalRead(i, DigitalCallback3);
+			}
+	        }
+	    }
+</script>
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media
 queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page
@@ -57,7 +92,7 @@ respond.min.js"></script>
 					<!-- ----------LAMPU 0---------- -->
 					<div class="row" id="lamp0">
 						<div class="col-xs-5 col-md-5 col-lg-5">
-							<h4 class="text-center">Ruang Tamu</h4>
+							<h4 class="text-center">Bed Room 1</h4>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
@@ -75,7 +110,7 @@ respond.min.js"></script>
 					<!-- ----------LAMPU 1---------- -->
 					<div class="row" id="lamp1">
 						<div class="col-xs-5 col-md-5 col-lg-5">
-							<h4 class="text-center">Ruang Keluarga</h4>
+							<h4 class="text-center">Lampu Taman</h4>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
@@ -93,7 +128,7 @@ respond.min.js"></script>
 					<!-- ----------LAMPU 2---------- -->
 					<div class="row" id="lamp2">
 						<div class="col-xs-5 col-md-5 col-lg-5">
-							<h4 class="text-center">Kamar Utama</h4>
+							<h4 class="text-center">Bath Room</h4>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
@@ -111,7 +146,7 @@ respond.min.js"></script>
 					<!-- ----------LAMPU 3---------- -->
 					<div class="row" id="lamp3">
 						<div class="col-xs-5 col-md-5 col-lg-5">
-							<h4 class="text-center">Kamar Anak</h4>
+							<h4 class="text-center">Garage</h4>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
@@ -129,12 +164,12 @@ respond.min.js"></script>
 					<!-- ----------LAMPU 4---------- -->
 					<div class="row" id="lamp4">
 						<div class="col-xs-5 col-md-5 col-lg-5">
-							<h4 class="text-center">Ruang Keluarga</h4>
+							<h4 class="text-center">Dining Room</h4>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch4" onclick="toggleswitch4()">
-								<label class="onoffswitch-label" for="switch4"><div class="onoffswitch-inner"></div>
+								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch20" onclick="toggleswitch20()">
+								<label class="onoffswitch-label" for="switch20"><div class="onoffswitch-inner"></div>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
 						</div>
@@ -147,12 +182,12 @@ respond.min.js"></script>
 					<!-- ----------LAMPU 5---------- -->
 					<div class="row" id="lamp5">
 						<div class="col-xs-5 col-md-5 col-lg-5">
-							<h4 class="text-center">Dapur</h4>
+							<h4 class="text-center">Front Room</h4>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch5" onclick="toggleswitch5()">
-								<label class="onoffswitch-label" for="switch5"><div class="onoffswitch-inner"></div>
+								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch21" onclick="toggleswitch21()">
+								<label class="onoffswitch-label" for="switch21"><div class="onoffswitch-inner"></div>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
 						</div>
@@ -165,12 +200,12 @@ respond.min.js"></script>
 					<!-- ----------LAMPU 6---------- -->
 					<div class="row" id="lamp6">
 						<div class="col-xs-5 col-md-5 col-lg-5">
-							<h4 class="text-center">Garasi</h4>
+							<h4 class="text-center">Living Room</h4>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch6" onclick="toggleswitch6()">
-								<label class="onoffswitch-label" for="switch6"><div class="onoffswitch-inner"></div>
+								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch22" onclick="toggleswitch22()">
+								<label class="onoffswitch-label" for="switch22"><div class="onoffswitch-inner"></div>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
 						</div>
@@ -183,12 +218,12 @@ respond.min.js"></script>
 					<!-- ----------LAMPU 7---------- -->
 					<div class="row" id="lamp7">
 						<div class="col-xs-5 col-md-5 col-lg-5">
-							<h4 class="text-center">Taman Depan</h4>
+							<h4 class="text-center">Bed Room 2</h4>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch7" onclick="toggleswitch7()">
-								<label class="onoffswitch-label" for="switch7"><div class="onoffswitch-inner"></div>
+								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch23" onclick="toggleswitch23()">
+								<label class="onoffswitch-label" for="switch23"><div class="onoffswitch-inner"></div>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
 						</div>
@@ -204,26 +239,28 @@ respond.min.js"></script>
 			
 			<div class="col-sm-3 col-md-6 col-lg-6">
 				<div class="row">
-					<div class="col-sm-3 col-md-6 col-lg-4"><div class="content">
-						<h3 align="center">
-							May 13th
-							<br>
-							08:08
-						</h3>
-						
-						</div></div>
-					<div class="col-sm-9 col-md-6 col-lg-8">
+					<div class="col-sm-12 col-md-12 col-lg-12">
 						<div class="content">
 							<div class="video">
 								this is temperature
 							</div>
-							<a href="temperature.html">setting temperatur</a>
+							<p align="right"><a href="temperature.html">setting temperatur</a></p>
 						</div>
 					</div>
 				</div>
 				<br>
 				<div class="row">
-					<div class="col-sm-12 col-md-12 col-lg-12"><div class="content"><a href="setting.html">setting shortcut</a></div></div>
+					<div class="col-sm-12 col-md-12 col-lg-12" >
+						<div class="content">
+						<form class="form-group" align="center">
+							<button class="btn btn-primary btn-lg" id="btn-home">Home</button>
+							<button class="btn btn-primary btn-lg" id="btn-away">Away</button>
+							<button class="btn btn-primary btn-lg" id="btn-alert">Alert</button>
+						</form>	
+							
+						<p align="right"><a href="setting.html">setting shortcut</a></p>
+						</div>
+					</div>
 				</div>		
 			</div>
 			

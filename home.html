@@ -24,9 +24,37 @@
 		mcp3 = new GPIOPort("mcp3");
 		tmp = new Temperature("tmp");
 		
-		// refresh UI each seconds
+
+        
+        var content, button;
+            content = $("#shortcut");
+                
+	    button = webiopi().createGPIOButton(7, "Home");
+                content.append(button);
+				
+        button = webiopi().createGPIOButton(11, "Away");
+                content.append(button);
+				
+
+	    button = webiopi().createGPIOButton(8, "Alert!");
+                content.append(button);
+
+        button = webiopi().createGPIOButton(25, "Closeloop"); 
+                content.append(button);
+
+
+	    
+        button = webiopi().createRatioSlider(9);
+		content.append(button);
+
+        button = webiopi().createRatioSlider(10);
+		content.append(button);
+		
+				// refresh UI each seconds
 		setInterval(updateUI, 3000);
 		setInterval(updateUI2, 100);
+		webiopi().refreshGPIO(true);
+        
         }
 		
 	// function called through setInterval
@@ -104,11 +132,13 @@ respond.min.js"></script>
 						<div class="content">
 						<h3 align="left"><strong>Shortcut</strong></h3	>
 						<br>
+						<div id="shortcut"></div>
+						<!--
 						<form class="form-group" align="center">
 							<button class="btn btn-primary btn-lg" id="btn-home">Home</button>
 							<button class="btn btn-primary btn-lg" id="btn-away">Away</button>
 							<button class="btn btn-primary btn-lg" id="btn-alert">Alert</button>
-						</form>	
+						</form>	-->
 							
 						<p align="right"><a href="setting.html">setting shortcut</a></p>
 						</div>
@@ -135,13 +165,17 @@ respond.min.js"></script>
 					<h3 align="left"><strong>Lampu</strong></h3>
 					<br>
 					<div class="row" id="header-lamp">
+						<div class="col-xs-1 col-md-1 col-lg-1"></div>
 						<div class="col-xs-5 col-md-5 col-lg-5"><h4 class="text-center"><strong>Ruang</strong></h4></div>
 						<div class="col-xs-4 col-md-4 col-lg-4"><h4 class="text-center"><strong>Status Lampu</strong></h4></div>
+						<!--
 						<div class="col-xs-3 col-md-3 col-lg-3"><h4 class="text-center"><strong>Auto</strong></h4></div>
+						-->
 					</div>
 					<br>
 					<!-- ----------LAMPU 0---------- -->
 					<div class="row" id="lamp0">
+						<div class="col-xs-1 col-md-1 col-lg-1"></div>
 						<div class="col-xs-5 col-md-5 col-lg-5">
 							<h4 class="text-center">Bed Room 1</h4>
 						</div>
@@ -152,14 +186,17 @@ respond.min.js"></script>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
 						</div>
+						<!--
 						<div class="col-xs-3 col-md-3 col-lg-3" id="auto0">
 							<h4 class="text-center"><strong>Yes</strong></h4>
 						</div>
+						-->
 					</div>
 					<!-- -------END OF LAMPU0---------- -->
 					
 					<!-- ----------LAMPU 1---------- -->
 					<div class="row" id="lamp1">
+						<div class="col-xs-1 col-md-1 col-lg-1"></div>
 						<div class="col-xs-5 col-md-5 col-lg-5">
 							<h4 class="text-center">Lampu Taman</h4>
 						</div>
@@ -170,14 +207,17 @@ respond.min.js"></script>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
 						</div>
+						<!--
 						<div class="col-xs-3 col-md-3 col-lg-3" id="auto1">
 							<h4 class="text-center"><strong>No</strong></h4>
 						</div>
+						-->
 					</div>
 					<!-- -------END OF LAMPU1---------- -->
 					
 					<!-- ----------LAMPU 2---------- -->
 					<div class="row" id="lamp2">
+						<div class="col-xs-1 col-md-1 col-lg-1"></div>
 						<div class="col-xs-5 col-md-5 col-lg-5">
 							<h4 class="text-center">Bath Room</h4>
 						</div>
@@ -188,14 +228,17 @@ respond.min.js"></script>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
 						</div>
+						<!--
 						<div class="col-xs-3 col-md-3 col-lg-3" id="auto2">
 							<h4 class="text-center"><strong>No</strong></h4>
 						</div>
+						-->
 					</div>
 					<!-- -------END OF LAMPU2---------- -->					
 					
 					<!-- ----------LAMPU 3---------- -->
 					<div class="row" id="lamp3">
+						<div class="col-xs-1 col-md-1 col-lg-1"></div>
 						<div class="col-xs-5 col-md-5 col-lg-5">
 							<h4 class="text-center">Garage</h4>
 						</div>
@@ -206,14 +249,17 @@ respond.min.js"></script>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
 						</div>
+						<!--
 						<div class="col-xs-3 col-md-3 col-lg-3" id="auto3">
 							<h4 class="text-center"><strong>Yes</strong></h4>
 						</div>
+						-->
 					</div>
 					<!-- -------END OF LAMPU3---------- -->	
 					
 					<!-- ----------LAMPU 4---------- -->
 					<div class="row" id="lamp4">
+						<div class="col-xs-1 col-md-1 col-lg-1"></div>
 						<div class="col-xs-5 col-md-5 col-lg-5">
 							<h4 class="text-center">Dining Room</h4>
 						</div>
@@ -224,14 +270,17 @@ respond.min.js"></script>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
 						</div>
+						<!--
 						<div class="col-xs-3 col-md-3 col-lg-3" id="auto4">
 							<h4 class="text-center"><strong>No</strong></h4>
 						</div>
+						-->
 					</div>
 					<!-- -------END OF LAMPU 4---------- -->	
 
 					<!-- ----------LAMPU 5---------- -->
 					<div class="row" id="lamp5">
+						<div class="col-xs-1 col-md-1 col-lg-1"></div>
 						<div class="col-xs-5 col-md-5 col-lg-5">
 							<h4 class="text-center">Front Room</h4>
 						</div>
@@ -242,14 +291,17 @@ respond.min.js"></script>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
 						</div>
+						<!--
 						<div class="col-xs-3 col-md-3 col-lg-3" id="auto5">
 							<h4 class="text-center"><strong>Yes</strong></h4>
 						</div>
+						-->
 					</div>
 					<!-- -------END OF LAMPU 5---------- -->
 					
 					<!-- ----------LAMPU 6---------- -->
 					<div class="row" id="lamp6">
+						<div class="col-xs-1 col-md-1 col-lg-1"></div>
 						<div class="col-xs-5 col-md-5 col-lg-5">
 							<h4 class="text-center">Living Room</h4>
 						</div>
@@ -260,14 +312,17 @@ respond.min.js"></script>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
 						</div>
+						<!--
 						<div class="col-xs-3 col-md-3 col-lg-3" id="auto6">
 							<h4 class="text-center"><strong>Yes</strong></h4>
 						</div>
+						-->
 					</div>
 					<!-- -------END OF LAMPU 6---------- -->
 					
 					<!-- ----------LAMPU 7---------- -->
 					<div class="row" id="lamp7">
+						<div class="col-xs-1 col-md-1 col-lg-1"></div>
 						<div class="col-xs-5 col-md-5 col-lg-5">
 							<h4 class="text-center">Bed Room 2</h4>
 						</div>
@@ -278,9 +333,11 @@ respond.min.js"></script>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
 						</div>
+						<!--
 						<div class="col-xs-3 col-md-3 col-lg-3" id="auto7">
 							<h4 class="text-center"><strong>Yes</strong></h4>
 						</div>
+						-->
 					</div>
 					<!-- -------END OF LAMPU 7---------- -->
 				<br>	

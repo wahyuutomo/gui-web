@@ -18,11 +18,75 @@ html5shiv.js"></script>
 respond.min.js"></script>
 <![endif]-->
 
-<script type="text/javascript" src="/webiopi.js"></script>
-<script type="text/javascript" src="/toggle.js"></script>
-<script type+"text/javascript">
-	var mcp;
-	webiopi().ready(init)
+<!--<script type="text/javascript" src="/webiopi.js"></script>-->
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="update-lamp.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#ok").click(function(){
+			//var j0 = $("#jam-on0 option:selected").val();
+		//*	
+			var j0 = $("#jam-on0 option:selected").val();
+			var j1 = $("#jam-on1 option:selected").val();
+			var j2 = $("#jam-on2 option:selected").val();
+			var j3 = $("#jam-on3 option:selected").val();
+			var j4 = $("#jam-on4 option:selected").val();
+			var j5 = $("#jam-on5 option:selected").val();
+			var j6 = $("#jam-on6 option:selected").val();
+			var j7 = $("#jam-on7 option:selected").val();
+			
+			var jf0 = $("#jam-off0 option:selected").val();
+			var jf1 = $("#jam-off1 option:selected").val();
+			var jf2 = $("#jam-off2 option:selected").val();
+			var jf3 = $("#jam-off3 option:selected").val();
+			var jf4 = $("#jam-off4 option:selected").val();
+			var jf5 = $("#jam-off5 option:selected").val();
+			var jf6 = $("#jam-off6 option:selected").val();
+			var jf7 = $("#jam-off7 option:selected").val();
+			
+			var m0 = $("#menit-on0 option:selected").val();
+			var m1 = $("#menit-on1 option:selected").val();
+			var m2 = $("#menit-on2 option:selected").val();
+			var m3 = $("#menit-on3 option:selected").val();
+			var m4 = $("#menit-on4 option:selected").val();
+			var m5 = $("#menit-on5 option:selected").val();
+			var m6 = $("#menit-on6 option:selected").val();
+			var m7 = $("#menit-on7 option:selected").val();
+			
+			var mf0 = $("#menit-off0 option:selected").val();
+			var mf1 = $("#menit-off1 option:selected").val();
+			var mf2 = $("#menit-off2 option:selected").val();
+			var mf3 = $("#menit-off3 option:selected").val();
+			var mf4 = $("#menit-off4 option:selected").val();
+			var mf5 = $("#menit-off5 option:selected").val();
+			var mf6 = $("#menit-off6 option:selected").val();
+			var mf7 = $("#menit-off7 option:selected").val();
+			
+			//coba(j0);
+			update(j0,j1,j2,j3,j4,j5,j6,j7,jf0,jf1,jf2,jf3,jf4,jf5,jf6,jf7,m0,m1,m2,m3,m4,m5,m6,m7,mf0,mf1,mf2,mf3,mf4,mf5,mf6,mf7);
+			
+			//*
+			//jamon(j0,j1,j2,j3,j4,j5,j6,j7);
+			/*
+			
+			
+			
+			jamon(j0,j1,j2,j3,j4,j5,j6,j7);
+			jamoff(jf0,jf1,jf2,jf3,jf4,jf5,jf6,jf7);
+			meniton(m0,m1,m2,m3,m4,m5,m6,m7);
+			menitoff(mf0,mf1,mf2,mf3,mf4,mf5,mf6,mf7);
+			//*/
+			//window.location.href="http://localhost/home.html";
+			//alert('hello '+j0+j1+j2+m3+m2+m5+mf3+mf4+jf3+jf2);
+			
+
+		});
+		
+//		$("#cancel").click(function{
+//			//window.location.href="http://localhost/home.html";
+//			alert('okay');
+//		});
+	});
 	
 </script>
 	
@@ -73,10 +137,10 @@ respond.min.js"></script>
 						</div>
 		
 						<div class="col-xs-3 col-md-3 col-lg-3" id="on0">
-							<form role="form">
+							<form role="form" class="form-group">
 								<div class="row">
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="jam-on0">
 											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
@@ -86,7 +150,7 @@ respond.min.js"></script>
 										</select>
 									</div>
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="menit-on0">
 											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
 											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
 										</select>
@@ -98,7 +162,7 @@ respond.min.js"></script>
 							<form role="form">
 								<div class="row">
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="jam-off0">
 											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
@@ -108,7 +172,7 @@ respond.min.js"></script>
 										</select>
 									</div>
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="menit-off0">
 											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
 											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
 										</select>
@@ -132,7 +196,7 @@ respond.min.js"></script>
 							<form role="form">
 								<div class="row">
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="jam-on1">
 											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
@@ -142,7 +206,7 @@ respond.min.js"></script>
 										</select>
 									</div>
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="menit-on1">
 											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
 											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
 										</select>
@@ -154,7 +218,7 @@ respond.min.js"></script>
 							<form role="form">
 								<div class="row">
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="jam-off1">
 											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
@@ -164,7 +228,7 @@ respond.min.js"></script>
 										</select>
 									</div>
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="menit-off1">
 											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
 											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
 										</select>
@@ -188,7 +252,7 @@ respond.min.js"></script>
 							<form role="form">
 								<div class="row">
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="jam-on2">
 											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
@@ -198,7 +262,7 @@ respond.min.js"></script>
 										</select>
 									</div>
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="menit-on2">
 											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
 											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
 										</select>
@@ -210,7 +274,7 @@ respond.min.js"></script>
 							<form role="form">
 								<div class="row">
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="jam-off2">
 											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
@@ -220,7 +284,7 @@ respond.min.js"></script>
 										</select>
 									</div>
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="menit-off2">
 											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
 											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
 										</select>
@@ -244,7 +308,7 @@ respond.min.js"></script>
 							<form role="form">
 								<div class="row">
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="jam-on3">
 											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
@@ -254,7 +318,7 @@ respond.min.js"></script>
 										</select>
 									</div>
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="menit-on3">
 											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
 											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
 										</select>
@@ -266,7 +330,7 @@ respond.min.js"></script>
 							<form role="form">
 								<div class="row">
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="jam-off3">
 											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
@@ -276,7 +340,7 @@ respond.min.js"></script>
 										</select>
 									</div>
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="menit-off3">
 											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
 											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
 										</select>
@@ -300,7 +364,7 @@ respond.min.js"></script>
 							<form role="form">
 								<div class="row">
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="jam-on4">
 											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
@@ -310,7 +374,7 @@ respond.min.js"></script>
 										</select>
 									</div>
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="menit-on4">
 											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
 											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
 										</select>
@@ -322,7 +386,7 @@ respond.min.js"></script>
 							<form role="form">
 								<div class="row">
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="jam-off4">
 											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
@@ -332,7 +396,7 @@ respond.min.js"></script>
 										</select>
 									</div>
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="menit-off4">
 											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
 											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
 										</select>
@@ -357,7 +421,7 @@ respond.min.js"></script>
 							<form role="form">
 								<div class="row">
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="jam-on5">
 											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
@@ -367,7 +431,7 @@ respond.min.js"></script>
 										</select>
 									</div>
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="menit-on5">
 											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
 											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
 										</select>
@@ -379,7 +443,7 @@ respond.min.js"></script>
 							<form role="form">
 								<div class="row">
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="jam-off5">
 											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
@@ -389,7 +453,7 @@ respond.min.js"></script>
 										</select>
 									</div>
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="menit-off5">
 											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
 											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
 										</select>
@@ -415,7 +479,7 @@ respond.min.js"></script>
 							<form role="form">
 								<div class="row">
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="jam-on6">
 											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
@@ -425,7 +489,7 @@ respond.min.js"></script>
 										</select>
 									</div>
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="menit-on6">
 											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
 											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
 										</select>
@@ -437,7 +501,7 @@ respond.min.js"></script>
 							<form role="form">
 								<div class="row">
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="jam-off6">
 											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
@@ -447,7 +511,7 @@ respond.min.js"></script>
 										</select>
 									</div>
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="menit-off6">
 											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
 											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
 										</select>
@@ -473,7 +537,7 @@ respond.min.js"></script>
 							<form role="form">
 								<div class="row">
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="jam-on7">
 											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
@@ -483,7 +547,7 @@ respond.min.js"></script>
 										</select>
 									</div>
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="menit-on7">
 											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
 											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
 										</select>
@@ -495,7 +559,7 @@ respond.min.js"></script>
 							<form role="form">
 								<div class="row">
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="jam-off7">
 											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
@@ -505,7 +569,7 @@ respond.min.js"></script>
 										</select>
 									</div>
 									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
+										<select class="" id="menit-off7">
 											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
 											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
 										</select>
@@ -521,10 +585,10 @@ respond.min.js"></script>
 					<div class="row">
 						<div class="col-xs-9 col-md-9 col-lg-9"></div>
 						<div class="col-xs-2 col-md-2 col-lg-2" align="center">
-							<form action="home.html">
-							<button type="submit" class="btn btn-default" id="ok">Ok</button>
-							<button type="submit" class="btn btn-default" id="cancel">Cancel</button>
-							</form>
+							
+							<button class="btn btn-primary" id="ok">Ok</button>
+							<button class="btn btn-primary" id="cancel">Cancel</button>
+							<form action="#"></form>
 						</div>
 						<div class="col-xs-1 col-md-1 col-lg-1"></div>
 					</div>

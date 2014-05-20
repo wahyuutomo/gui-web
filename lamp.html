@@ -23,6 +23,102 @@ respond.min.js"></script>
 <script type="text/javascript" src="update-lamp.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		//update ui
+		//auto
+		$.ajax({
+            type: 'POST',
+            url: 'get-lamp.php',
+            data: 'command=auto',
+            dataType: 'json',
+            cache: false,
+            success: function(result) {
+                if (result[0]=="1") $('#auto0').prop('checked', true);
+				if (result[1]=="1") $('#auto1').prop('checked', true);
+				if (result[2]=="1") $('#auto2').prop('checked', true);
+				if (result[3]=="1") $('#auto3').prop('checked', true);
+				if (result[4]=="1") $('#auto4').prop('checked', true);
+				if (result[5]=="1") $('#auto5').prop('checked', true);
+				if (result[6]=="1") $('#auto6').prop('checked', true);
+				if (result[7]=="1") $('#auto7').prop('checked', true);
+			},
+			});
+		
+		//jam_on
+		$.ajax({
+            type: 'POST',
+            url: 'get-lamp.php',
+            data: 'command=jamon',
+            dataType: 'json',
+            cache: false,
+            success: function(result) {
+                $("#jam-on0").val(result[0]);
+                $("#jam-on1").val(result[1]);
+                $("#jam-on2").val(result[2]);
+                $("#jam-on3").val(result[3]);
+                $("#jam-on4").val(result[4]);
+                $("#jam-on5").val(result[5]);
+                $("#jam-on6").val(result[6]);
+                $("#jam-on7").val(result[7]);
+			},
+			});
+			
+		//jam_off
+		$.ajax({
+            type: 'POST',
+            url: 'get-lamp.php',
+            data: 'command=jamoff',
+            dataType: 'json',
+            cache: false,
+            success: function(result) {
+                $("#jam-off0").val(result[0]);
+                $("#jam-off1").val(result[1]);
+                $("#jam-off2").val(result[2]);
+                $("#jam-off3").val(result[3]);
+                $("#jam-off4").val(result[4]);
+                $("#jam-off5").val(result[5]);
+                $("#jam-off6").val(result[6]);
+                $("#jam-off7").val(result[7]);
+			},
+			});
+
+		//menit_on
+		$.ajax({
+            type: 'POST',
+            url: 'get-lamp.php',
+            data: 'command=meniton',
+            dataType: 'json',
+            cache: false,
+            success: function(result) {
+                $("#menit-on0").val(result[0]);
+                $("#menit-on1").val(result[1]);
+                $("#menit-on2").val(result[2]);
+                $("#menit-on3").val(result[3]);
+                $("#menit-on4").val(result[4]);
+                $("#menit-on5").val(result[5]);
+                $("#menit-on6").val(result[6]);
+                $("#menit-on7").val(result[7]);
+			},
+			});			
+					
+		//menit_off
+		$.ajax({
+            type: 'POST',
+            url: 'get-lamp.php',
+            data: 'command=menitoff',
+            dataType: 'json',
+            cache: false,
+            success: function(result) {
+                $("#menit-off0").val(result[0]);
+                $("#menit-off1").val(result[1]);
+                $("#menit-off2").val(result[2]);
+                $("#menit-off3").val(result[3]);
+                $("#menit-off4").val(result[4]);
+                $("#menit-off5").val(result[5]);
+                $("#menit-off6").val(result[6]);
+                $("#menit-off7").val(result[7]);
+			},
+			});			
+					
 		$("#ok").click(function(){
 			//var j0 = $("#jam-on0 option:selected").val();
 		//*	
@@ -139,7 +235,7 @@ respond.min.js"></script>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
 											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
+											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option>
 											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
 										</select>
 									</div>
@@ -161,7 +257,7 @@ respond.min.js"></script>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
 											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
+											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option>
 											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
 										</select>
 									</div>
@@ -195,7 +291,7 @@ respond.min.js"></script>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
 											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
+											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option>
 											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
 										</select>
 									</div>
@@ -217,7 +313,7 @@ respond.min.js"></script>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
 											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
+											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option>
 											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
 										</select>
 									</div>
@@ -251,7 +347,7 @@ respond.min.js"></script>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
 											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
+											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option>
 											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
 										</select>
 									</div>
@@ -273,7 +369,7 @@ respond.min.js"></script>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
 											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
+											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option>
 											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
 										</select>
 									</div>
@@ -307,7 +403,7 @@ respond.min.js"></script>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
 											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
+											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option>
 											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
 										</select>
 									</div>
@@ -329,7 +425,7 @@ respond.min.js"></script>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
 											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
+											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option>
 											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
 										</select>
 									</div>
@@ -363,7 +459,7 @@ respond.min.js"></script>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
 											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
+											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option>
 											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
 										</select>
 									</div>
@@ -385,7 +481,7 @@ respond.min.js"></script>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
 											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
+											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option>
 											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
 										</select>
 									</div>
@@ -420,7 +516,7 @@ respond.min.js"></script>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
 											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
+											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option>
 											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
 										</select>
 									</div>
@@ -442,7 +538,7 @@ respond.min.js"></script>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
 											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
+											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option>
 											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
 										</select>
 									</div>
@@ -478,7 +574,7 @@ respond.min.js"></script>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
 											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
+											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option>
 											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
 										</select>
 									</div>
@@ -500,7 +596,7 @@ respond.min.js"></script>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
 											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
+											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option>
 											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
 										</select>
 									</div>
@@ -536,7 +632,7 @@ respond.min.js"></script>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
 											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
+											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option>
 											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
 										</select>
 									</div>
@@ -558,7 +654,7 @@ respond.min.js"></script>
 											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
 											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
 											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
+											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option>
 											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
 										</select>
 									</div>

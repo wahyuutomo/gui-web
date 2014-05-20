@@ -23,69 +23,128 @@ respond.min.js"></script>
 <script type="text/javascript" src="update-lamp.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		var lampu = [
+		{
+		"auto" : "0",
+		"jamon" : "0",
+		"jamoff" : "0",
+		"meniton" : "0",
+		"menitoff" : "0"
+		},
+		
+		{
+		"auto" : "0",
+		"jamon" : "0",
+		"jamoff" : "0",
+		"meniton" : "0",
+		"menitoff" : "0"
+		},
+		
+		{
+		"auto" : "0",
+		"jamon" : "0",
+		"jamoff" : "0",
+		"meniton" : "0",
+		"menitoff" : "0"
+		},
+
+		{
+		"auto" : "0",
+		"jamon" : "0",
+		"jamoff" : "0",
+		"meniton" : "0",
+		"menitoff" : "0"
+		},
+
+		{
+		"auto" : "0",
+		"jamon" : "0",
+		"jamoff" : "0",
+		"meniton" : "0",
+		"menitoff" : "0"
+		},
+
+		{
+		"auto" : "0",
+		"jamon" : "0",
+		"jamoff" : "0",
+		"meniton" : "0",
+		"menitoff" : "0"
+		},
+
+		{
+		"auto" : "0",
+		"jamon" : "0",
+		"jamoff" : "0",
+		"meniton" : "0",
+		"menitoff" : "0"
+		},
+
+		{
+		"auto" : "0",
+		"jamon" : "0",
+		"jamoff" : "0",
+		"meniton" : "0",
+		"menitoff" : "0"
+		}];
+		
+
 		$("#ok").click(function(){
 			//var j0 = $("#jam-on0 option:selected").val();
 		//*	
-			var j0 = $("#jam-on0 option:selected").val();
-			var j1 = $("#jam-on1 option:selected").val();
-			var j2 = $("#jam-on2 option:selected").val();
-			var j3 = $("#jam-on3 option:selected").val();
-			var j4 = $("#jam-on4 option:selected").val();
-			var j5 = $("#jam-on5 option:selected").val();
-			var j6 = $("#jam-on6 option:selected").val();
-			var j7 = $("#jam-on7 option:selected").val();
+			lampu[0].jamon = ($("#jam-on0 option:selected").val()).toString();
+			lampu[1].jamon = ($("#jam-on1 option:selected").val()).toString();
+			lampu[2].jamon = ($("#jam-on2 option:selected").val()).toString();
+			lampu[3].jamon = ($("#jam-on3 option:selected").val()).toString();
+			lampu[4].jamon = ($("#jam-on4 option:selected").val()).toString();
+			lampu[5].jamon = ($("#jam-on5 option:selected").val()).toString();
+			lampu[6].jamon = ($("#jam-on6 option:selected").val()).toString();
+			lampu[7].jamon = ($("#jam-on7 option:selected").val()).toString();
 			
-			var jf0 = $("#jam-off0 option:selected").val();
-			var jf1 = $("#jam-off1 option:selected").val();
-			var jf2 = $("#jam-off2 option:selected").val();
-			var jf3 = $("#jam-off3 option:selected").val();
-			var jf4 = $("#jam-off4 option:selected").val();
-			var jf5 = $("#jam-off5 option:selected").val();
-			var jf6 = $("#jam-off6 option:selected").val();
-			var jf7 = $("#jam-off7 option:selected").val();
+			lampu[0].jamoff = ($("#jam-off0 option:selected").val()).toString();
+			lampu[1].jamoff = ($("#jam-off1 option:selected").val()).toString();
+			lampu[2].jamoff = ($("#jam-off2 option:selected").val()).toString();
+			lampu[3].jamoff = ($("#jam-off3 option:selected").val()).toString();
+			lampu[4].jamoff = ($("#jam-off4 option:selected").val()).toString();
+			lampu[5].jamoff = ($("#jam-off5 option:selected").val()).toString();
+			lampu[6].jamoff = ($("#jam-off6 option:selected").val()).toString();
+			lampu[7].jamoff = ($("#jam-off7 option:selected").val()).toString();
 			
-			var m0 = $("#menit-on0 option:selected").val();
-			var m1 = $("#menit-on1 option:selected").val();
-			var m2 = $("#menit-on2 option:selected").val();
-			var m3 = $("#menit-on3 option:selected").val();
-			var m4 = $("#menit-on4 option:selected").val();
-			var m5 = $("#menit-on5 option:selected").val();
-			var m6 = $("#menit-on6 option:selected").val();
-			var m7 = $("#menit-on7 option:selected").val();
+			lampu[0].meniton = ($("#menit-on0 option:selected").val()).toString();
+			lampu[1].meniton = ($("#menit-on1 option:selected").val()).toString();
+			lampu[2].meniton = ($("#menit-on2 option:selected").val()).toString();
+			lampu[3].meniton = ($("#menit-on3 option:selected").val()).toString();
+			lampu[4].meniton = ($("#menit-on4 option:selected").val()).toString();
+			lampu[5].meniton = ($("#menit-on5 option:selected").val()).toString();
+			lampu[6].meniton = ($("#menit-on6 option:selected").val()).toString();
+			lampu[7].meniton = ($("#menit-on7 option:selected").val()).toString();
 			
-			var mf0 = $("#menit-off0 option:selected").val();
-			var mf1 = $("#menit-off1 option:selected").val();
-			var mf2 = $("#menit-off2 option:selected").val();
-			var mf3 = $("#menit-off3 option:selected").val();
-			var mf4 = $("#menit-off4 option:selected").val();
-			var mf5 = $("#menit-off5 option:selected").val();
-			var mf6 = $("#menit-off6 option:selected").val();
-			var mf7 = $("#menit-off7 option:selected").val();
+			lampu[0].menitoff = ($("#menit-off0 option:selected").val()).toString();
+			lampu[1].menitoff = ($("#menit-off1 option:selected").val()).toString();
+			lampu[2].menitoff = ($("#menit-off2 option:selected").val()).toString();
+			lampu[3].menitoff = ($("#menit-off3 option:selected").val()).toString();
+			lampu[4].menitoff = ($("#menit-off4 option:selected").val()).toString();
+			lampu[5].menitoff = ($("#menit-off5 option:selected").val()).toString();
+			lampu[6].menitoff = ($("#menit-off6 option:selected").val()).toString();
+			lampu[7].menitoff = ($("#menit-off7 option:selected").val()).toString();
+			
+			lampu[0].auto = $("#auto0").is(':checked') ? "1" : "0";
+			lampu[1].auto = $("#auto1").is(':checked') ? "1" : "0";
+			lampu[2].auto = $("#auto2").is(':checked') ? "1" : "0";
+			lampu[3].auto = $("#auto3").is(':checked') ? "1" : "0";
+			lampu[4].auto = $("#auto4").is(':checked') ? "1" : "0";
+			lampu[5].auto = $("#auto5").is(':checked') ? "1" : "0";
+			lampu[6].auto = $("#auto6").is(':checked') ? "1" : "0";
+			lampu[7].auto = $("#auto7").is(':checked') ? "1" : "0";
 			
 			//coba(j0);
-			update(j0,j1,j2,j3,j4,j5,j6,j7,jf0,jf1,jf2,jf3,jf4,jf5,jf6,jf7,m0,m1,m2,m3,m4,m5,m6,m7,mf0,mf1,mf2,mf3,mf4,mf5,mf6,mf7);
-			
-			//*
-			//jamon(j0,j1,j2,j3,j4,j5,j6,j7);
-			/*
-			
-			
-			
-			jamon(j0,j1,j2,j3,j4,j5,j6,j7);
-			jamoff(jf0,jf1,jf2,jf3,jf4,jf5,jf6,jf7);
-			meniton(m0,m1,m2,m3,m4,m5,m6,m7);
-			menitoff(mf0,mf1,mf2,mf3,mf4,mf5,mf6,mf7);
-			//*/
-			//window.location.href="http://localhost/home.html";
-			//alert('hello '+j0+j1+j2+m3+m2+m5+mf3+mf4+jf3+jf2);
-			
-
+			update(lampu);
 		});
 		
-//		$("#cancel").click(function{
-//			//window.location.href="http://localhost/home.html";
+		$("#cancel").click(function(){
+			window.location.href="http://localhost/home.html";
 //			alert('okay');
-//		});
+		});
 	});
 	
 </script>
@@ -133,7 +192,7 @@ respond.min.js"></script>
 							<h4 class="text-center"><a color="#aae41e">Ruang Tamu</a></h4>
 						</div>
 						<div class="col-xs-2 col-md-2 col-lg-2" id="auto0" align="center">
-							<input type="checkbox" name="autobox0" onclick="#" >
+							<input type="checkbox" name="autobox0" id="auto0" >
 						</div>
 		
 						<div class="col-xs-3 col-md-3 col-lg-3" id="on0">
@@ -190,7 +249,7 @@ respond.min.js"></script>
 							<h4 class="text-center">Kamar Utama</h4>
 						</div>
 						<div class="col-xs-2 col-md-2 col-lg-2" id="auto1" align="center">
-							<input type="checkbox" name="autobox1" onclick="#" >
+							<input type="checkbox" name="autobox1" id="auto1" >
 						</div>
 						<div class="col-xs-3 col-md-3 col-lg-3" id="on1">
 							<form role="form">
@@ -246,7 +305,7 @@ respond.min.js"></script>
 							<h4 class="text-center">Kamar Utama</h4>
 						</div>
 						<div class="col-xs-2 col-md-2 col-lg-2" id="auto2" align="center">
-							<input type="checkbox" name="autobox2" onclick="#" >
+							<input type="checkbox" name="autobox2" id="auto2">
 						</div>
 						<div class="col-xs-3 col-md-3 col-lg-3" id="on2">
 							<form role="form">
@@ -302,7 +361,7 @@ respond.min.js"></script>
 							<h4 class="text-center">Kamar Anak</h4>
 						</div>
 						<div class="col-xs-2 col-md-2 col-lg-2" id="auto3" align="center">
-							<input type="checkbox" name="autobox3" onclick="#" >
+							<input type="checkbox" name="autobox3" id="auto3" >
 						</div>
 						<div class="col-xs-3 col-md-3 col-lg-3" id="on3">
 							<form role="form">
@@ -358,7 +417,7 @@ respond.min.js"></script>
 							<h4 class="text-center">Ruang Keluarga</h4>
 						</div>
 						<div class="col-xs-2 col-md-2 col-lg-2" id="auto4" align="center">
-							<input type="checkbox" name="autobox4" onclick="#" >
+							<input type="checkbox" name="autobox4" id="auto4" >
 						</div>
 						<div class="col-xs-3 col-md-3 col-lg-3" id="on4">
 							<form role="form">
@@ -415,7 +474,7 @@ respond.min.js"></script>
 							<h4 class="text-center">Dapur</h4>
 						</div>
 						<div class="col-xs-2 col-md-2 col-lg-2" id="auto5" align="center">
-							<input type="checkbox" name="autobox5" onclick="#" >
+							<input type="checkbox" name="autobox5" id="auto5" >
 						</div>
 						<div class="col-xs-3 col-md-3 col-lg-3" id="on5">
 							<form role="form">
@@ -473,7 +532,7 @@ respond.min.js"></script>
 						</div>
 
 						<div class="col-xs-2 col-md-2 col-lg-2" id="auto6" align="center">
-							<input type="checkbox" name="autobox6" onclick="#" >
+							<input type="checkbox" name="autobox6" id="auto6" >
 						</div>
 						<div class="col-xs-3 col-md-3 col-lg-3" id="on6">
 							<form role="form">
@@ -531,7 +590,7 @@ respond.min.js"></script>
 						</div>
 
 						<div class="col-xs-2 col-md-2 col-lg-2" id="auto7" align="center">
-							<input type="checkbox" name="autobox7" onclick="#" >
+							<input type="checkbox" name="autobox7" id="auto7" >
 						</div>
 						<div class="col-xs-3 col-md-3 col-lg-3" id="on7">
 							<form role="form">

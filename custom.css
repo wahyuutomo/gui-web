@@ -1,615 +1,102 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Home Automation - Lamp </title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Bootstrap -->
-<link href="css/custom.css" rel="stylesheet">
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media
-queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page
-TUTORIALS POINT
-Simply Easy Learning
-via file:// -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/
-html5shiv.js"></script>
-<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/
-respond.min.js"></script>
-<![endif]-->
+@import url(bootstrap.min.css);
+@import url(toogle.css);
 
-<script type="text/javascript" src="/webiopi.js"></script>
-<script type="text/javascript" src="/toggle.js"></script>
-<script type+"text/javascript">
-	var mcp;
-	webiopi().ready(init)
+
+
+body{
+	background: #f7f7f7 url('bg.jpg');
+	height: 100%;
+}
+
+h1{
+	border: solid 5px black;
+}
+
+br.clear{clear:both; margin-top:-15px;}
+
+.content{
+	display:block;
+	width: auto;
+	height: auto;
+	padding:20px;
+	background-color: honeydew;
+}
+
+.contenttemp{
+	display:block;
+	width: auto;
+	height: 300px;
+	padding:20px;
+	background-color: honeydew;
+}
+
+.content-home{
+	display: block;
+	background-color: none;
+	display: block;
+	border: solid 1px black;
+}
+
+.content-vid, .content-tab{
+	width: auto;
+	height: 350px;
+	padding: 20px;
+	background-color: honeydew;
+}
+
+
+#showtemp {
+			display: block;
+			margin: 5px 5px 5px 5px;
+			width: 160px;
+			height: 100px;
+			font-size: 28pt;
+			font-weight: bold;
+			color: black;
+       }
+       
+       
+#acon {
+	width: 160px;
+	height: 45px;
+}
+
+
+#btn-home, #btn-away, #btn-alert{
+	width: 160px;
+	height: 45px;
 	
-</script>
+}
+
+#btn-submit, #select-temp {
 	
-</head> 
-<body>
-	<!--HEADER-->
-	<div class="container" name="header">
-		<img src="../images/cherry.png" class="img-responsive" alt="Responsive image">
-	</div>
-	<!--END OF HEADER-->
-	
-	<!--TOP NAVIGATION-->
-	<div class="container" name="top_navigation">
-		<nav class="navbar navbar-inverse" role="navigation">
-			<div>
-				<ul class="nav navbar-nav">
-					<li><a href="home.html">Home</a></li>
-					<li class="active"><a href="lamp.html">Lamp</a></li>
-					<li><a href="temperature.html">Temperature</a></li>
-					<li><a href="security.html">Security</a></li>
-					<li><a href="music.html">Music</a></li>
-					<li><a href="setting.html">Setting</a></li>
-				</ul>
-			</div>
-		</nav>
-	</div>
-	<!--END OF TOP NAVIGATION-->
-	
-	<!--CONTENT-->
-	<div class="container" name="content">
-		<div class="content">
-					<div class="row" id="header-lamp">
-						<div class="col-xs-3 col-md-3 col-lg-3"><h4 class="text-center"><strong>Ruang</strong></h4></div>
-						<div class="col-xs-3 col-md-3 col-lg-3"><h4 class="text-center"><strong>Status Lampu</strong></h4></div>
-						<div class="col-xs-1 col-md-1 col-lg-1"><h4 class="text-center"><strong>Auto</strong></h4></div>
-						<!--<div class="clearfix visible-xs"></div>-->
+	width: 50px;
+	height: 30px;
+}
 
-						<div class="col-xs-2 col-md-2 col-lg-2"><h4 class="text-center"><strong>ON</strong></h4></div>
-						<div class="col-xs-2 col-md-2 col-lg-2"><h4 class="text-center"><strong>OFF</strong></h4></div>
-						<div class="col-xs-1 col-md-1 col-lg-1"></div>
-					</div>
-					<br>
-					<!-- ----------LAMPU 0---------- -->
-					<div class="row" id="lamp0">
-						<div class="col-xs-3 col-md-3 col-lg-3">
-							<h4 class="text-center"><a color="#aae41e">Ruang Tamu</a></h4>
-						</div>
-						<div class="col-xs-3 col-md-3 col-lg-3" align="center">
-							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch0" onclick="toggleswitch0()">
-								<label class="onoffswitch-label" for="switch0"><div class="onoffswitch-inner"></div>
-								<div class="onoffswitch-switch"></div></label>
-							</div>
-						</div>
-						<div class="col-xs-1 col-md-1 col-lg-1" id="auto0" align="center">
-							<input type="checkbox" name="autobox0" onclick="#" >
-						</div>
-					
-	
-						<div class="col-xs-2 col-md-2 col-lg-2" id="on0">
-							<form role="form">
-								<div class="row">
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
-											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
-											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
-											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
-											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
-										</select>
-									</div>
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
-											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
-										</select>
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="col-xs-2 col-md-2 col-lg-2" id="off0">
-							<form role="form">
-								<div class="row">
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
-											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
-											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
-											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
-											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
-										</select>
-									</div>
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
-											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
-										</select>
-									</div>
-								</div>
-							</form>							
-						</div>
-						<div class="col-xs-1 col-md-1 col-lg-1"></div>
-					</div>
-					<!-- -------END OF LAMPU0---------- -->
-					
-					<!-- ----------LAMPU 1---------- -->
-					<div class="row" id="lamp1">
-						<div class="col-xs-3 col-md-3 col-lg-3">
-							<h4 class="text-center">Kamar Utama</h4>
-						</div>
-						<div class="col-xs-3 col-md-3 col-lg-3" align="center">
-							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch1" onclick="toggleswitch1()">
-								<label class="onoffswitch-label" for="switch1"><div class="onoffswitch-inner"></div>
-								<div class="onoffswitch-switch"></div></label>
-							</div>
-						</div>
-						<div class="col-xs-1 col-md-1 col-lg-1" id="auto1" align="center">
-							<input type="checkbox" name="autobox1" onclick="#" >
-						</div>
-						<div class="col-xs-2 col-md-2 col-lg-2" id="on1">
-							<form role="form">
-								<div class="row">
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
-											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
-											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
-											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
-											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
-										</select>
-									</div>
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
-											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
-										</select>
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="col-xs-2 col-md-2 col-lg-2" id="off1">
-							<form role="form">
-								<div class="row">
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
-											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
-											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
-											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
-											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
-										</select>
-									</div>
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
-											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
-										</select>
-									</div>
-								</div>
-							</form>							
-						</div>
-						<div class="col-xs-1 col-md-1 col-lg-1"></div>
-					</div>
-					<!-- -------END OF LAMPU1---------- -->
-					
-					<!-- ----------LAMPU 2---------- -->
-					<div class="row" id="lamp2">
-						<div class="col-xs-3 col-md-3 col-lg-3">
-							<h4 class="text-center">Kamar Utama</h4>
-						</div>
-						<div class="col-xs-3 col-md-3 col-lg-3" align="center">
-							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch2" onclick="toggleswitch2()">
-								<label class="onoffswitch-label" for="switch2"><div class="onoffswitch-inner"></div>
-								<div class="onoffswitch-switch"></div></label>
-							</div>
-						</div>
-						<div class="col-xs-1 col-md-1 col-lg-1" id="auto2" align="center">
-							<input type="checkbox" name="autobox2" onclick="#" >
-						</div>
-						<div class="col-xs-2 col-md-2 col-lg-2" id="on2">
-							<form role="form">
-								<div class="row">
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
-											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
-											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
-											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
-											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
-										</select>
-									</div>
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
-											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
-										</select>
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="col-xs-2 col-md-2 col-lg-2" id="off2">
-							<form role="form">
-								<div class="row">
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
-											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
-											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
-											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
-											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
-										</select>
-									</div>
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
-											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
-										</select>
-									</div>
-								</div>
-							</form>							
-						</div>
-						<div class="col-xs-1 col-md-1 col-lg-1"></div>
-					</div>
-					<!-- -------END OF LAMPU2---------- -->					
-					
-					<!-- ----------LAMPU 3---------- -->
-					<div class="row" id="lamp3">
-						<div class="col-xs-3 col-md-3 col-lg-3">
-							<h4 class="text-center">Kamar Anak</h4>
-						</div>
-						<div class="col-xs-3 col-md-3 col-lg-3" align="center">
-							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch3" onclick="toggleswitch3()">
-								<label class="onoffswitch-label" for="switch3"><div class="onoffswitch-inner"></div>
-								<div class="onoffswitch-switch"></div></label>
-							</div>
-						</div>
-						<div class="col-xs-1 col-md-1 col-lg-1" id="auto3" align="center">
-							<input type="checkbox" name="autobox3" onclick="#" >
-						</div>
-						<div class="col-xs-2 col-md-2 col-lg-2" id="on3">
-							<form role="form">
-								<div class="row">
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
-											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
-											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
-											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
-											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
-										</select>
-									</div>
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="\">
-											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
-											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
-										</select>
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="col-xs-2 col-md-2 col-lg-2" id="off3">
-							<form role="form">
-								<div class="row">
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
-											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
-											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
-											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
-											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
-										</select>
-									</div>
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
-											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
-										</select>
-									</div>
-								</div>
-							</form>							
-						</div>
-						<div class="col-xs-1 col-md-1 col-lg-1"></div>
-					</div>
-					<!-- -------END OF LAMPU3---------- -->	
-					
-					<!-- ----------LAMPU 4---------- -->
-					<div class="row" id="lamp4">
-						<div class="col-xs-3 col-md-3 col-lg-3">
-							<h4 class="text-center">Ruang Keluarga</h4>
-						</div>
-						<div class="col-xs-3 col-md-3 col-lg-3" align="center">
-							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch4" onclick="toggleswitch4()">
-								<label class="onoffswitch-label" for="switch4"><div class="onoffswitch-inner"></div>
-								<div class="onoffswitch-switch"></div></label>
-							</div>
-						</div>
-						<div class="col-xs-1 col-md-1 col-lg-1" id="auto4" align="center">
-							<input type="checkbox" name="autobox4" onclick="#" >
-						</div>
-						<div class="col-xs-2 col-md-2 col-lg-2" id="on4">
-							<form role="form">
-								<div class="row">
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
-											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
-											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
-											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
-											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
-										</select>
-									</div>
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
-											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
-										</select>
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="col-xs-2 col-md-2 col-lg-2" id="off4">
-							<form role="form">
-								<div class="row">
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
-											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
-											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
-											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
-											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
-										</select>
-									</div>
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
-											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
-										</select>
-									</div>
-								</div>
-							</form>							
-						</div>
-						<div class="col-xs-1 col-md-1 col-lg-1"></div>
-					</div>
+#ok:hover , #btn-submit:hover{
+	color:#FFFFFF;
+	background-color:#aae41e;
+}
 
-					<!-- -------END OF LAMPU 4---------- -->	
+#cancel:hover{
+	color:#FFFFFF;
+	background-color:#aae41e;
 
-					<!-- ----------LAMPU 5---------- -->
-					<div class="row" id="lamp5">
-						<div class="col-xs-3 col-md-3 col-lg-3">
-							<h4 class="text-center">Dapur</h4>
-						</div>
-						<div class="col-xs-3 col-md-3 col-lg-3" align="center">
-							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch5" onclick="toggleswitch5()">
-								<label class="onoffswitch-label" for="switch5"><div class="onoffswitch-inner"></div>
-								<div class="onoffswitch-switch"></div></label>
-							</div>
-						</div>
-						<div class="col-xs-1 col-md-1 col-lg-1" id="auto5" align="center">
-							<input type="checkbox" name="autobox5" onclick="#" >
-						</div>
-						<div class="col-xs-2 col-md-2 col-lg-2" id="on5">
-							<form role="form">
-								<div class="row">
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
-											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
-											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
-											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
-											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
-										</select>
-									</div>
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
-											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
-										</select>
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="col-xs-2 col-md-2 col-lg-2" id="off5">
-							<form role="form">
-								<div class="row">
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
-											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
-											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
-											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
-											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
-										</select>
-									</div>
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
-											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
-										</select>
-									</div>
-								</div>
-							</form>							
-						</div>
-						<div class="col-xs-1 col-md-1 col-lg-1"></div>
-					</div>
+}
 
-					<!-- -------END OF LAMPU 5---------- -->
-					
-					<!-- ----------LAMPU 6---------- -->
-					<div class="row" id="lamp6">
-						<div class="col-xs-3 col-md-3 col-lg-3">
-							<h4 class="text-center">Garasi</h4>
-						</div>
-						<div class="col-xs-3 col-md-3 col-lg-3" align="center">
-							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch6" onclick="toggleswitch6()">
-								<label class="onoffswitch-label" for="switch6"><div class="onoffswitch-inner"></div>
-								<div class="onoffswitch-switch"></div></label>
-							</div>
-						</div>
-						<div class="col-xs-1 col-md-1 col-lg-1" id="auto6" align="center">
-							<input type="checkbox" name="autobox6" onclick="#" >
-						</div>
-						<div class="col-xs-2 col-md-2 col-lg-2" id="on6">
-							<form role="form">
-								<div class="row">
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
-											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
-											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
-											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
-											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
-										</select>
-									</div>
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
-											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
-										</select>
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="col-xs-2 col-md-2 col-lg-2" id="off6">
-							<form role="form">
-								<div class="row">
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
-											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
-											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
-											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
-											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
-										</select>
-									</div>
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
-											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
-										</select>
-									</div>
-								</div>
-							</form>							
-						</div>
-						<div class="col-xs-1 col-md-1 col-lg-1"></div>
-					</div>
+#copyright{
+	display:block;
+	width:max;
+	padding:10px;
+	}
 
-					<!-- -------END OF LAMPU 6---------- -->
-					
-					<!-- ----------LAMPU 7---------- -->
-					<div class="row" id="lamp7">
-						<div class="col-xs-3 col-md-3 col-lg-3">
-							<h4 class="text-center">Taman Depan</h4>
-						</div>
-						<div class="col-xs-3 col-md-3 col-lg-3" align="center">
-							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch7" onclick="toggleswitch7()">
-								<label class="onoffswitch-label" for="switch7"><div class="onoffswitch-inner"></div>
-								<div class="onoffswitch-switch"></div></label>
-							</div>
-						</div>
-						<div class="col-xs-1 col-md-1 col-lg-1" id="auto7" align="center">
-							<input type="checkbox" name="autobox7" onclick="#" >
-						</div>
-						<div class="col-xs-2 col-md-2 col-lg-2" id="on7">
-							<form role="form">
-								<div class="row">
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
-											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
-											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
-											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
-											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
-										</select>
-									</div>
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
-											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
-										</select>
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="col-xs-2 col-md-2 col-lg-2" id="off7">
-							<form role="form">
-								<div class="row">
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
-											<option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
-											<option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
-											<option value="12">12</option><option value="13">13</option><option value="14">14</option>
-											<option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">19</option>
-											<option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
-										</select>
-									</div>
-									<div class="col-xs-6 col-md-6 col-lg-6">
-										<select class="">
-											<option value="0">0</option><option value="5">5</option><option value="10">10</option>
-											<option value="15">15</option><option value="30">30</option><option value="45">45</option>
-										</select>
-									</div>
-								</div>
-							</form>							
-						</div>
-						<div class="col-xs-1 col-md-1 col-lg-1"></div>
-					</div>
-					<!-- -------END OF LAMPU 7---------- -->
-				<br>	
-				
-					<div class="row">
-						<div class="col-xs-9 col-md-9 col-lg-9"></div>
-						<div class="col-xs-2 col-md-2 col-lg-2" align="center">
-							<form action="home.html">
-							<button type="submit" class="btn btn-default" id="ok">Ok</button>
-							<button type="submit" class="btn btn-default" id="cancel">Cancel</button>
-							</form>
-						</div>
-						<div class="col-xs-1 col-md-1 col-lg-1"></div>
-					</div>
-		<br>
-		</div>		
-	<br class="clear" />
-	</div>
-	<!--END OF CONTENT-->
-	
-	
-	<!--FOOTER-->
-	<div class="container" name="footer">
-		<div id="copyright">
-		<p class="pull-left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">Aura Home Automation</a></p>
-		<p class="pull-right">Team Tugas Akhir 1</a></p>
-		<br class="clear" />
-		</div>
-	</div>
-	<!--END OF FOOTER-->
+#copyright, #copyright a{
+	color:#666666;
+	background-color:#d7d1b4;
+	}
 
-
-
-
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://code.jquery.com/jquery.js"></script>
-<!-- Include all compiled plugins (below), or include individual files
-as needed -->
-<script src="js/bootstrap.min.js"></script>
-</body>
-</html>
+#copyright p{
+	margin:0;
+	padding:0;
+	}

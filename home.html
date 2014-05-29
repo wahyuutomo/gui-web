@@ -10,7 +10,7 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript">
 
-/* declare global variables
+//* declare global variables
 	var mcp;
 	var mcp2;
 	var mcp3;
@@ -24,7 +24,37 @@
         mcp2 = new GPIOPort("mcp2");
 		mcp3 = new GPIOPort("mcp3");
 		tmp = new Temperature("tmp");
-		
+		        
+        $("#btn-home").click(function(){
+			w().toggleValue(7);
+			});
+			        
+        $("#btn-away").click(function(){
+			w().toggleValue(11);
+			});
+
+        $("#btn-alert").click(function(){
+			w().toggleValue(8);
+			});
+
+		$.ajax({
+					type: 'POST',
+					url: 'get-lamp.php',
+					data: 'command=auto',
+					dataType: 'json',
+					cache: false,
+					success: function(result) {
+						if (result[0]=="1") {$('#autoo0').text('YES');} else {$('#autoo0').text('NO');}
+						if (result[1]=="1") {$('#autoo1').text('YES');} else {$('#autoo1').text('NO');}
+						if (result[2]=="1") {$('#autoo2').text('YES');} else {$('#autoo2').text('NO');}
+						if (result[3]=="1") {$('#autoo3').text('YES');} else {$('#autoo3').text('NO');}
+						if (result[4]=="1") {$('#autoo4').text('YES');} else {$('#autoo4').text('NO');}
+						if (result[5]=="1") {$('#autoo5').text('YES');} else {$('#autoo5').text('NO');}
+						if (result[6]=="1") {$('#autoo6').text('YES');} else {$('#autoo6').text('NO');}
+						if (result[7]=="1") {$('#autoo7').text('YES');} else {$('#autoo7').text('NO');}
+					},
+					});
+					
 		// refresh UI each seconds
 		setInterval(updateUI, 3000);
 		setInterval(updateUI2, 100);
@@ -34,17 +64,16 @@
     function updateUI() {
 	 // call MCP.digitalRead 0 to 7 REST API
 		if (mcp.isReady()) {
-			for (var i=0;i<8;i++)
+			for (var i=0;i<4;i++)
 			{
 			mcp.digitalRead(i, DigitalCallback);	 
 			mcp2.digitalRead(i, DigitalCallback2);
-			mcp3.digitalRead(i, DigitalCallback3);
 			}
 	        }
 	    }		
 		
     // function called through setInterval
-    function updateUI2() {function updateUI() {
+    function updateUI2(){
                 // call Temperature.getCelsius REST API
                 // result is asynchronously displayed using the callback
                 tmp.getCelsius(temperatureCallback);
@@ -56,7 +85,7 @@
                 $("#showtemp").text(data + "°C");
         }
 	//*/
-	
+	/*
 	$(document).ready(function(){
 				//auto
 		$.ajax({
@@ -79,6 +108,7 @@
 		
 		
 		});
+		//*/
 </script>
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media
 queries -->
@@ -96,7 +126,7 @@ respond.min.js"></script>
 <body>
 	<!--HEADER-->
 	<div class="container" name="header">
-		<img src="../images/cherry.png" class="img-responsive" alt="Responsive image">
+		<img src="../images/cherry.png"  class="img-responsive" alt="Responsive image">
 	</div>
 	<!--END OF HEADER-->
 	
@@ -110,7 +140,7 @@ respond.min.js"></script>
 					<li><a href="temperature.html">Temperature</a></li>
 					<li><a href="security.html">Security</a></li>
 					<li><a href="music.html">Music</a></li>
-					<li><a href="setting.html">Setting</a></li>
+<!--					<li><a href="setting.html">Setting</a></li> -->
 				</ul>
 			</div>
 		</nav>
@@ -129,9 +159,9 @@ respond.min.js"></script>
 						<h3 align="left"><strong>Shortcut</strong></h3	>
 						<br>
 						<form class="form-group" align="center">
-							<button class="btn btn-primary btn-lg" id="btn-home">Home</button>
-							<button class="btn btn-primary btn-lg" id="btn-away">Away</button>
-							<button class="btn btn-primary btn-lg" id="btn-alert">Alert</button>
+							<button class="btn btn-success btn-lg" id="btn-home">Home</button>
+							<button class="btn btn-success btn-lg" id="btn-away">Away</button>
+							<button class="btn btn-success btn-lg" id="btn-alert">Alert</button>
 						</form>	
 							
 						<p align="right"><a href="setting.html">setting shortcut</a></p>
@@ -145,7 +175,7 @@ respond.min.js"></script>
 						<div class="content" >
 							<h3 align="left"><strong>Temperature</strong></h3>
 							<br>
-							<p align="center"><button class="btn btn-lg" id="showtemp"></button></p>
+							<p align="center"><button class="btn btn-lg btn-default" id="showtemp">25 &deg;C</button></p>
 							<br>
 							<p align="right"><a href="temperature.html">setting temperatur</a></p>
 						</div>
@@ -167,7 +197,7 @@ respond.min.js"></script>
 					<!-- ----------LAMPU 0---------- -->
 					<div class="row" id="lamp0">
 						<div class="col-xs-5 col-md-5 col-lg-5">
-							<h4 class="text-center">Bed Room 1</h4>
+							<h4 class="text-center">Kamar Tidur 1</h4>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
@@ -185,7 +215,7 @@ respond.min.js"></script>
 					<!-- ----------LAMPU 1---------- -->
 					<div class="row" id="lamp1">
 						<div class="col-xs-5 col-md-5 col-lg-5">
-							<h4 class="text-center">Lampu Taman</h4>
+							<h4 class="text-center">Kamar Tidur 2</h4>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
@@ -195,7 +225,7 @@ respond.min.js"></script>
 							</div>
 						</div>
 						<div class="col-xs-3 col-md-3 col-lg-3" name="auto1">
-							<h4 class="text-center" id="autoo1"><strong>No</strong></h4>
+							<h4 class="text-center" id="autoo1"><strong>YES</strong></h4>
 						</div>
 					</div>
 					<!-- -------END OF LAMPU1---------- -->
@@ -203,7 +233,7 @@ respond.min.js"></script>
 					<!-- ----------LAMPU 2---------- -->
 					<div class="row" id="lamp2">
 						<div class="col-xs-5 col-md-5 col-lg-5">
-							<h4 class="text-center">Bath Room</h4>
+							<h4 class="text-center">Kamar Mandi</h4>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
@@ -221,7 +251,7 @@ respond.min.js"></script>
 					<!-- ----------LAMPU 3---------- -->
 					<div class="row" id="lamp3">
 						<div class="col-xs-5 col-md-5 col-lg-5">
-							<h4 class="text-center">Garage</h4>
+							<h4 class="text-center">Garasi</h4>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
@@ -239,7 +269,7 @@ respond.min.js"></script>
 					<!-- ----------LAMPU 4---------- -->
 					<div class="row" id="lamp4">
 						<div class="col-xs-5 col-md-5 col-lg-5">
-							<h4 class="text-center">Dining Room</h4>
+							<h4 class="text-center">Ruang Makan</h4>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
@@ -257,7 +287,7 @@ respond.min.js"></script>
 					<!-- ----------LAMPU 5---------- -->
 					<div class="row" id="lamp5">
 						<div class="col-xs-5 col-md-5 col-lg-5">
-							<h4 class="text-center">Front Room</h4>
+							<h4 class="text-center">Ruang Tamu</h4>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
@@ -275,7 +305,7 @@ respond.min.js"></script>
 					<!-- ----------LAMPU 6---------- -->
 					<div class="row" id="lamp6">
 						<div class="col-xs-5 col-md-5 col-lg-5">
-							<h4 class="text-center">Living Room</h4>
+							<h4 class="text-center">Ruang Keluarga</h4>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
@@ -293,7 +323,7 @@ respond.min.js"></script>
 					<!-- ----------LAMPU 7---------- -->
 					<div class="row" id="lamp7">
 						<div class="col-xs-5 col-md-5 col-lg-5">
-							<h4 class="text-center">Bed Room 2</h4>
+							<h4 class="text-center">Lampu Taman</h4>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">

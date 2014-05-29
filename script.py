@@ -75,12 +75,15 @@ def loop():
          mcp.digitalWrite(x, GPIO.HIGH)
          mcp2.digitalWrite(x, GPIO.HIGH)
          mcp3.digitalWrite(x, GPIO.HIGH)
+      GPIO.digitalWrite(7, GPIO.LOW)
+      
     elif int (GPIO.digitalRead(11)) == 1 and int (GPIO.digitalRead(7)) == 0:
       for x in range(0, 7):
          mcp.digitalWrite(x, GPIO.LOW)
       for x in range(0, 8):
          mcp2.digitalWrite(x, GPIO.LOW)
          mcp3.digitalWrite(x, GPIO.HIGH)
+      GPIO.digitalWrite(11, GPIO.LOW)
 
     if int (GPIO.digitalRead(8)) == 1 :
       for x in range(0, 8):
@@ -92,7 +95,7 @@ def loop():
          mcp.digitalWrite(x, GPIO.LOW)
          mcp2.digitalWrite(x, GPIO.LOW)
          mcp3.digitalWrite(x, GPIO.LOW)
-
+      
     webiopi.sleep(1)
 
 # destroy function is called at WebIOPi shutdown
@@ -149,7 +152,13 @@ def setLightHours(on, off):
     return getLightHours()
 
 @webiopi.macro
-def update(auto,jamon,jamoff,meniton,menitoff):
+def update():
+	global auto = [0,0,0,0,0,0,0,0]
+	global jamon = [0,0,0,0,0,0,0,0]
+	global jamoff = [0,0,0,0,0,0,0,0]
+	global meniton = [0,0,0,0,0,0,0,0]
+	global menitoff = [0,0,0,0,0,0,0,0]
+
 	db = MySQLdb.connect("localhost","root","1214174","monitoring")
 	cursor = db.cursor()
 	cursor.execute("SELECT * FROM lampu")
@@ -165,7 +174,7 @@ def update(auto,jamon,jamoff,meniton,menitoff):
 		i = i+1
 	db.close()
 	
-	return auto,jamon,jamoff,meniton,menitoff
+	return
 
 def match(auto,jamon,jamoff,meniton,menitoff):
 	now = datetime.datime.now()

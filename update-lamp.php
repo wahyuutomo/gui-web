@@ -48,18 +48,18 @@
 	
 	//*/
     
-    $koneksi=mysql_connect("localhost", "root", "1214174");
+    $koneksi=mysql_connect("localhost", "root", "cherry");
     if ($koneksi){mysql_select_db("monitoring");}
   //  $sql=mysql_query("update lampu set jam_on='$jam_on', jam_off='$jam_off',menit_on='$menit_on', menit_off='$menit_off' WHERE id = 0");         
  //*
-    $sql=mysql_query("update lampu set auto='$auto0', jam_on='$jamon0',menit_on='$meniton0',jam_off='$jamoff0',menit_off='$menitoff0' where id=0");
-    $sql=mysql_query("update lampu set auto='$auto1', jam_on='$jamon1',menit_on='$meniton1',jam_off='$jamoff1',menit_off='$menitoff1' where id=1");
-    $sql=mysql_query("update lampu set auto='$auto2', jam_on='$jamon2',menit_on='$meniton2',jam_off='$jamoff2',menit_off='$menitoff2' where id=2");
-    $sql=mysql_query("update lampu set auto='$auto3', jam_on='$jamon3',menit_on='$meniton3',jam_off='$jamoff3',menit_off='$menitoff3' where id=3");
-    $sql=mysql_query("update lampu set auto='$auto4', jam_on='$jamon4',menit_on='$meniton4',jam_off='$jamoff4',menit_off='$menitoff4' where id=4");
-    $sql=mysql_query("update lampu set auto='$auto5', jam_on='$jamon5',menit_on='$meniton5',jam_off='$jamoff5',menit_off='$menitoff5' where id=5");
-    $sql=mysql_query("update lampu set auto='$auto6', jam_on='$jamon6',menit_on='$meniton6',jam_off='$jamoff6',menit_off='$menitoff6' where id=6");
-    $sql=mysql_query("update lampu set auto='$auto7', jam_on='$jamon7',menit_on='$meniton7',jam_off='$jamoff7',menit_off='$menitoff7' where id=7");
+    $sql=mysql_query("update lampu set auto='$auto0', jam_on='$jamon0',menit_on='$meniton0',jam_off='$jamoff0',menit_off='$menitoff0' where id=1");
+    $sql=mysql_query("update lampu set auto='$auto1', jam_on='$jamon1',menit_on='$meniton1',jam_off='$jamoff1',menit_off='$menitoff1' where id=2");
+    $sql=mysql_query("update lampu set auto='$auto2', jam_on='$jamon2',menit_on='$meniton2',jam_off='$jamoff2',menit_off='$menitoff2' where id=3");
+    $sql=mysql_query("update lampu set auto='$auto3', jam_on='$jamon3',menit_on='$meniton3',jam_off='$jamoff3',menit_off='$menitoff3' where id=4");
+    $sql=mysql_query("update lampu set auto='$auto4', jam_on='$jamon4',menit_on='$meniton4',jam_off='$jamoff4',menit_off='$menitoff4' where id=5");
+    $sql=mysql_query("update lampu set auto='$auto5', jam_on='$jamon5',menit_on='$meniton5',jam_off='$jamoff5',menit_off='$menitoff5' where id=6");
+    $sql=mysql_query("update lampu set auto='$auto6', jam_on='$jamon6',menit_on='$meniton6',jam_off='$jamoff6',menit_off='$menitoff6' where id=7");
+    $sql=mysql_query("update lampu set auto='$auto7', jam_on='$jamon7',menit_on='$meniton7',jam_off='$jamoff7',menit_off='$menitoff7' where id=8");
 //*/    
-	//mysqli_close($sql);
+	mysqli_close($koneksi);
 ?>

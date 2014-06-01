@@ -12,7 +12,7 @@ coba= function (value){
 
 update = function (j0,j1,j2,j3,j4,j5,j6,j7,jf0,jf1,jf2,jf3,jf4,jf5,jf6,jf7,m0,m1,m2,m3,m4,m5,m6,m7,mf0,mf1,mf2,mf3,mf4,mf5,mf6,mf7,a0,a1,a2,a3,a4,a5,a6,a7){
 			
-			$.post("/update-lamp.php",
+			$.post("http://192.168.1.16/htdocs/update-lamp.php",
 			  {
 				jamon0:j0,
 				jamon1:j1,
@@ -57,7 +57,7 @@ update = function (j0,j1,j2,j3,j4,j5,j6,j7,jf0,jf1,jf2,jf3,jf4,jf5,jf6,jf7,m0,m1
 			  },
 			//*  
 			function(){
-				  window.location.href="http://localhost/home.html";				  
+				  window.location.href="http://192.168.1.16:8000/home.html";				  
 				  }
 			  );//*/
 			  //return;

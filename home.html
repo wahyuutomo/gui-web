@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Bootstrap -->
 <link href="css/custom.css" rel="stylesheet">
-<script type="text/javascript" src="/webiopi.js"></script>
-<script type="text/javascript" src="/toggle.js"></script>
+<script type="text/javascript" src="webiopi.js"></script>
+<script type="text/javascript" src="htdocs/toggle.js"></script>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript">
 
@@ -20,11 +20,27 @@
 	// function init() defines function passed to webiopi().ready()
     // NOTE* Change ("mcp") to the expander-name you designated in your config file
         function init() {
-		mcp = new GPIOPort("mcp");
-        mcp2 = new GPIOPort("mcp2");
-		mcp3 = new GPIOPort("mcp3");
-		tmp = new Temperature("tmp");
-		        
+			mcp = new GPIOPort("mcp");
+			mcp2 = new GPIOPort("mcp2");
+			mcp3 = new GPIOPort("mcp3");
+			tmp = new Temperature("tmp");
+
+			var updateauto = function(macro, args, response) {
+				var result = response.split(";");
+				// Following lines use jQuery functions
+			
+					if (result[0]=="1") {$("#autoo0").text("YES");} else {$("#autoo0").text("NO");}
+					if (result[1]=="1") {$('#autoo1').text('YES');} else {$('#autoo1').text('NO');}
+					if (result[2]=="1") {$('#autoo2').text('YES');} else {$('#autoo2').text('NO');}
+					if (result[3]=="1") {$('#autoo3').text('YES');} else {$('#autoo3').text('NO');}
+					if (result[4]=="1") {$('#autoo4').text('YES');} else {$('#autoo4').text('NO');}
+					if (result[5]=="1") {$('#autoo5').text('YES');} else {$('#autoo5').text('NO');}
+					if (result[6]=="1") {$('#autoo6').text('YES');} else {$('#autoo6').text('NO');}
+					if (result[7]=="1") {$('#autoo7').text('YES');} else {$('#autoo7').text('NO');}                    
+			}
+	
+		webiopi().callMacro("update", [], updateauto);
+        
         $("#btn-home").click(function(){
 			w().toggleValue(7);
 			});
@@ -37,23 +53,58 @@
 			w().toggleValue(8);
 			});
 
-		$.ajax({
-					type: 'POST',
-					url: 'get-lamp.php',
-					data: 'command=auto',
-					dataType: 'json',
-					cache: false,
-					success: function(result) {
-						if (result[0]=="1") {$('#autoo0').text('YES');} else {$('#autoo0').text('NO');}
-						if (result[1]=="1") {$('#autoo1').text('YES');} else {$('#autoo1').text('NO');}
-						if (result[2]=="1") {$('#autoo2').text('YES');} else {$('#autoo2').text('NO');}
-						if (result[3]=="1") {$('#autoo3').text('YES');} else {$('#autoo3').text('NO');}
-						if (result[4]=="1") {$('#autoo4').text('YES');} else {$('#autoo4').text('NO');}
-						if (result[5]=="1") {$('#autoo5').text('YES');} else {$('#autoo5').text('NO');}
-						if (result[6]=="1") {$('#autoo6').text('YES');} else {$('#autoo6').text('NO');}
-						if (result[7]=="1") {$('#autoo7').text('YES');} else {$('#autoo7').text('NO');}
-					},
-					});
+
+
+//*
+	$('#switch0').change(function () {
+	    toggleswitch0(mcp);
+	 });
+	
+	$('#switch1').change(function () {
+	    toggleswitch1(mcp);
+	 });
+
+	$('#switch2').change(function () {
+	    toggleswitch2(mcp);
+	 });
+
+	$('#switch3').change(function () {
+	    toggleswitch3(mcp);
+	 });
+
+	$('#switch20').change(function () {
+	    toggleswitch20(mcp2);
+	 });
+
+	$('#switch21').change(function () {
+	    toggleswitch21(mcp2);
+	 });
+
+	$('#switch22').change(function () {
+	    toggleswitch22(mcp2);
+	 });
+
+	$('#switch23').change(function () {
+	    toggleswitch23(mcp2);
+	 });
+//*/
+//	$.ajax({
+//		type: 'POST',
+//		url: 'get-lamp.php',
+//		data: 'command=auto',
+//		dataType: 'json',
+//		cache: false,
+//		success: function(result) {
+//			if (result[0]=="1") {$('#autoo0').text('YES');} else {$('#autoo0').text('NO');}
+//			if (result[1]=="1") {$('#autoo1').text('YES');} else {$('#autoo1').text('NO');}
+//			if (result[2]=="1") {$('#autoo2').text('YES');} else {$('#autoo2').text('NO');}
+//			if (result[3]=="1") {$('#autoo3').text('YES');} else {$('#autoo3').text('NO');}
+//			if (result[4]=="1") {$('#autoo4').text('YES');} else {$('#autoo4').text('NO');}
+//			if (result[5]=="1") {$('#autoo5').text('YES');} else {$('#autoo5').text('NO');}
+//			if (result[6]=="1") {$('#autoo6').text('YES');} else {$('#autoo6').text('NO');}
+//			if (result[7]=="1") {$('#autoo7').text('YES');} else {$('#autoo7').text('NO');}
+//		},
+//		});
 					
 		// refresh UI each seconds
 		setInterval(updateUI, 3000);
@@ -64,10 +115,11 @@
     function updateUI() {
 	 // call MCP.digitalRead 0 to 7 REST API
 		if (mcp.isReady()) {
-			for (var i=0;i<4;i++)
+			for (var i=0;i<8;i++)
 			{
 			mcp.digitalRead(i, DigitalCallback);	 
 			mcp2.digitalRead(i, DigitalCallback2);
+			mcp3.digitalRead(i, DigitalCallback3);
 			}
 	        }
 	    }		
@@ -82,7 +134,7 @@
 	// callback function used to display the temperature
     function temperatureCallback(sensorName, data) {
                 // jQuery functions
-                $("#showtemp").text(data + "°C");
+                $("#showtemp").text(data + " C");
         }
 	//*/
 	/*
@@ -136,10 +188,10 @@ respond.min.js"></script>
 			<div>
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="#">Home</a></li>
-					<li><a href="lamp.html">Lamp</a></li>
+					<li><a href="http://192.168.1.16/htdocs/lamp.html">Lamp</a></li>
 					<li><a href="temperature.html">Temperature</a></li>
 					<li><a href="security.html">Security</a></li>
-					<li><a href="music.html">Music</a></li>
+					<li><a href="http://192.168.1.16/htdocs/music.html">Music</a></li>
 <!--					<li><a href="setting.html">Setting</a></li> -->
 				</ul>
 			</div>
@@ -175,7 +227,7 @@ respond.min.js"></script>
 						<div class="content" >
 							<h3 align="left"><strong>Temperature</strong></h3>
 							<br>
-							<p align="center"><button class="btn btn-lg btn-default" id="showtemp">25 &deg;C</button></p>
+							<p align="center"><button class="btn btn-lg btn-default" id="showtemp"></button></p>
 							<br>
 							<p align="right"><a href="temperature.html">setting temperatur</a></p>
 						</div>
@@ -201,7 +253,7 @@ respond.min.js"></script>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch0" onclick="toggleswitch0()">
+								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch0">
 								<label class="onoffswitch-label" for="switch0"><div class="onoffswitch-inner"></div>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
@@ -219,7 +271,7 @@ respond.min.js"></script>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch1" onclick="toggleswitch1()">
+								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch1">
 								<label class="onoffswitch-label" for="switch1"><div class="onoffswitch-inner"></div>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
@@ -237,7 +289,7 @@ respond.min.js"></script>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch2" onclick="toggleswitch2()">
+								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch2">
 								<label class="onoffswitch-label" for="switch2"><div class="onoffswitch-inner"></div>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
@@ -255,7 +307,7 @@ respond.min.js"></script>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch3" onclick="toggleswitch3()">
+								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch3">
 								<label class="onoffswitch-label" for="switch3"><div class="onoffswitch-inner"></div>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
@@ -273,7 +325,7 @@ respond.min.js"></script>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch20" onclick="toggleswitch20()">
+								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch20">
 								<label class="onoffswitch-label" for="switch20"><div class="onoffswitch-inner"></div>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
@@ -291,7 +343,7 @@ respond.min.js"></script>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch21" onclick="toggleswitch21()">
+								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch21">
 								<label class="onoffswitch-label" for="switch21"><div class="onoffswitch-inner"></div>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
@@ -309,7 +361,7 @@ respond.min.js"></script>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch22" onclick="toggleswitch22()">
+								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch22">
 								<label class="onoffswitch-label" for="switch22"><div class="onoffswitch-inner"></div>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
@@ -327,7 +379,7 @@ respond.min.js"></script>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch23" onclick="toggleswitch23()">
+								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch23">
 								<label class="onoffswitch-label" for="switch23"><div class="onoffswitch-inner"></div>
 								<div class="onoffswitch-switch"></div></label>
 							</div>

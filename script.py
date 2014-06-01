@@ -1,16 +1,14 @@
-#!/usr/bin/env python
-
 import webiopi
 import datetime
 import MySQLdb
 
+GPIO = webiopi.GPIO # Helper for LOW/HIGH values
 
-GPIO = webiopi.GPIO
-
-LIGHT = 17 # GPIO pin using BCM numbering
-
-HOUR_ON  = 8  # Turn Light ON at 08:00
-HOUR_OFF = 18 # Turn Light OFF at 18:00
+HEATER = 7 # Heater plugged on the Expander Pin 7
+TEMP = 26
+MIN = 23 # Minimum temperature in celsius
+MAX = 26 # Maximum temperature in celsius
+AUTO = True
 
 auto = [0,0,0,0,0,0,0,0]
 jamon = [0,0,0,0,0,0,0,0]
@@ -21,15 +19,23 @@ menitoff = [0,0,0,0,0,0,0,0]
 
 # setup function is automatically called at WebIOPi startup
 def setup():
-    # set the GPIO used by the light to output
     # initialitation Button Home Away
     GPIO.setFunction(7, GPIO.OUT)
     GPIO.setFunction(8, GPIO.OUT)
-    GPIO.setFunction(25, GPIO.OUT)
     GPIO.setFunction(11, GPIO.OUT)
+    GPIO.setFunction(17, GPIO.OUT)
+    GPIO.setFunction(18, GPIO.OUT)
+    GPIO.setFunction(25, GPIO.OUT)
+    GPIO.setFunction(27, GPIO.OUT)
     mcp = webiopi.deviceInstance("mcp") # retrieve the device named "mcp" in the configuration 
     mcp2 = webiopi.deviceInstance("mcp2")
     mcp3 = webiopi.deviceInstance("mcp3")
+
+    #setting PWM
+    GPIO.setFunction(9, GPIO.PWM)
+    GPIO.pwmWrite(9, 0)
+    GPIO.setFunction(10, GPIO.PWM)
+    GPIO.pwmWrite(10, 0)	
 
     # Setup mcp
     for x in range(0, 8):
@@ -42,7 +48,7 @@ def setup():
     # Setup mcp3
     for x in range(0, 8):
       mcp3.setFunction(x, GPIO.OUT)
-
+		
     # Setup mcp LOW
     for x in range(0, 8):
       mcp.digitalWrite(x, GPIO.LOW)
@@ -55,35 +61,115 @@ def setup():
     for x in range(0, 8):
       mcp3.digitalWrite(x, GPIO.LOW)
 
-    # retrieve current datetime
-    now = datetime.datetime.now()
-	# test if we are between ON time and tun the light ON
-	initauto(auto,jamon,jamoff,meniton,menitoff)
     
-   
+    
+   # retrieve current datetime
+    now = datetime.datetime.now()
+
+    # test if we are between ON time and tun the light ON
+    initauto(auto,jamon,jamoff,meniton,menitoff,mcp,mcp2)
+
 
 # loop function is repeatedly called by WebIOPi 
 def loop():
+    if (AUTO):
+        tmp  = webiopi.deviceInstance("tmp")   # retrieve the device named "tmp" in the configuration
+        mcp  = webiopi.deviceInstance("mcp")   # retrieve the device named "mcp" in the configuration 
+        mcp2 = webiopi.deviceInstance("mcp2")
+        mcp3 = webiopi.deviceInstance("mcp3")
+		
+        celsius = tmp.getCelsius() # retrieve current temperature
+        print("Temperature: %f" % celsius)
+        print "auto = %d,%d,%d,%d,%d,%d,%d,%d"%(auto[0],auto[1],auto[2],auto[3],auto[4],auto[5],auto[6],auto[7])
+	print "jam on = %d,%d,%d,%d,%d,%d,%d,%d"%(jamon[0],jamon[1],jamon[2],jamon[3],jamon[4],jamon[5],jamon[6],jamon[7])
+	print "jam off = %d,%d,%d,%d,%d,%d,%d,%d"%(jamoff[0],jamoff[1],jamoff[2],jamoff[3],jamoff[4],jamoff[5],jamoff[6],jamoff[7])
+	print "menit on = %d,%d,%d,%d,%d,%d,%d,%d"%(meniton[0],meniton[1],meniton[2],meniton[3],meniton[4],meniton[5],meniton[6],meniton[7])
+	print "menit off = %d,%d,%d,%d,%d,%d,%d,%d"%(menitoff[0],menitoff[1],menitoff[2],menitoff[3],menitoff[4],menitoff[5],menitoff[6],menitoff[7])
+		
+        # Turn ON heater when passing below the minimum temperature
+        if (celsius < TEMP):
+            mcp.digitalWrite(HEATER, GPIO.LOW)
+
+        # Turn OFF heater when reaching maximum temperature
+ #       if (celsius >= TEMP):
+  #          mcp.digitalWrite(HEATER, GPIO.HIGH)
+            
+        #motor dengan sensor temperature
+        if int (GPIO.digitalRead(25)) == 1 :
+
+          if (celsius < 29):
+              GPIO.pwmWrite(9, 0)
+
+          if (29.0 < celsius < 29.05):
+              GPIO.pwmWrite(9, 0.05)
+          if (29.05 < celsius < 29.1):
+              GPIO.pwmWrite(9, 0.1)
+
+          if (29.1 < celsius < 29.15):
+              GPIO.pwmWrite(9, 0.15)
+          if (29.15 < celsius < 29.2):
+              GPIO.pwmWrite(9, 0.2)
+
+          if (29.2 < celsius < 29.25):
+              GPIO.pwmWrite(9, 0.25)
+          if (29.25 < celsius < 29.3):
+              GPIO.pwmWrite(9, 0.3)
+
+          if (29.3 < celsius < 29.35):
+              GPIO.pwmWrite(9, 0.35)
+          if (29.35 < celsius < 29.4):
+              GPIO.pwmWrite(9, 0.4)
+
+          if (29.4 < celsius < 29.45):
+              GPIO.pwmWrite(9, 0.45)
+          if (29.45 < celsius < 29.5):
+              GPIO.pwmWrite(9, 0.5)
+
+          if (29.5 < celsius < 29.55):
+              GPIO.pwmWrite(9, 0.55)
+          if (29.55 < celsius < 29.6):
+              GPIO.pwmWrite(9, 0.6)
+
+          if (29.6 < celsius < 29.65):
+              GPIO.pwmWrite(9, 0.65)
+          if (29.65 < celsius < 29.7):
+              GPIO.pwmWrite(9, 0.7)
+
+          if (29.7 < celsius < 29.75):
+              GPIO.pwmWrite(9, 0.75)
+          if (29.75 < celsius < 29.8):
+              GPIO.pwmWrite(9, 0.8)
+
+          if (29.8 < celsius < 29.85):
+              GPIO.pwmWrite(9, 0.85)
+          if (29.85 < celsius < 29.99):
+              GPIO.pwmWrite(9, 0.9)
+
+
+          if (celsius >= 30):
+              GPIO.pwmWrite(9, 1)
+
+
+
     # retrieve current datetime
     now = datetime.datetime.now()
-	if (now.second==0):
-		match(auto,jamon,jamoff,meniton,menitoff)
-    
+    if (now.second==0):
+        match(auto,jamon,jamoff,meniton,menitoff,mcp,mcp2)
+
+ # setting button Home Away
              
     if int (GPIO.digitalRead(7)) == 1 and int (GPIO.digitalRead(11)) == 0 :
       for x in range(0, 8):
          mcp.digitalWrite(x, GPIO.HIGH)
          mcp2.digitalWrite(x, GPIO.HIGH)
          mcp3.digitalWrite(x, GPIO.HIGH)
-      GPIO.digitalWrite(7, GPIO.LOW)
-      
+    #Away
     elif int (GPIO.digitalRead(11)) == 1 and int (GPIO.digitalRead(7)) == 0:
-      for x in range(0, 7):
+      for x in range(0, 8):
          mcp.digitalWrite(x, GPIO.LOW)
       for x in range(0, 8):
          mcp2.digitalWrite(x, GPIO.LOW)
          mcp3.digitalWrite(x, GPIO.HIGH)
-      GPIO.digitalWrite(11, GPIO.LOW)
 
     if int (GPIO.digitalRead(8)) == 1 :
       for x in range(0, 8):
@@ -95,7 +181,9 @@ def loop():
          mcp.digitalWrite(x, GPIO.LOW)
          mcp2.digitalWrite(x, GPIO.LOW)
          mcp3.digitalWrite(x, GPIO.LOW)
-      
+
+
+    # gives CPU some time before looping again
     webiopi.sleep(1)
 
 # destroy function is called at WebIOPi shutdown
@@ -103,12 +191,20 @@ def destroy():
     # destroy button Home Away
     GPIO.digitalWrite(7, GPIO.LOW)
     GPIO.digitalWrite(8, GPIO.LOW)
-    GPIO.digitalWrite(25, GPIO.LOW)
     GPIO.digitalWrite(11, GPIO.LOW)
+    GPIO.digitalWrite(17, GPIO.LOW)
+    GPIO.digitalWrite(18, GPIO.LOW)
+    GPIO.digitalWrite(25, GPIO.LOW)
+    GPIO.digitalWrite(27, GPIO.LOW)
     GPIO.setFunction(7, GPIO.IN)
     GPIO.setFunction(8, GPIO.IN)
-    GPIO.setFunction(25, GPIO.IN)
     GPIO.setFunction(11, GPIO.IN)
+    GPIO.setFunction(9, GPIO.IN)
+    GPIO.setFunction(10, GPIO.IN)
+    GPIO.setFunction(17, GPIO.IN)
+    GPIO.setFunction(18, GPIO.IN)
+    GPIO.setFunction(25, GPIO.IN)
+    GPIO.setFunction(27, GPIO.IN)
 
     mcp  = webiopi.deviceInstance("mcp")       # retrieve the device named "mcp" in the configuration 
     mcp2 = webiopi.deviceInstance("mcp2")
@@ -119,7 +215,7 @@ def destroy():
     for x in range(0, 8):
       mcp.digitalWrite(x, GPIO.LOW)
 
-    # Setup mcp2
+    # Setup mcp2y
     for x in range(0, 8):
       mcp2.digitalWrite(x, GPIO.LOW)
 
@@ -137,47 +233,68 @@ def destroy():
     # Setup mcp3
     for x in range(0, 8):
       mcp3.setFunction(x, GPIO.IN)
+		
 
 
-
+# a simple macro to return heater mode
 @webiopi.macro
-def getLightHours():
-    return "%d;%d" % (HOUR_ON, HOUR_OFF)
+def getMode():
+    if (AUTO):
+        return "auto"
+    return "manual"
 
+
+# simple macro to set and return heater mode
 @webiopi.macro
-def setLightHours(on, off):
-    global HOUR_ON, HOUR_OFF
-    HOUR_ON = int(on)
-    HOUR_OFF = int(off)
-    return getLightHours()
+def setMode(mode):
+    global AUTO
+    if (mode == "auto"):
+        AUTO = True
+    elif (mode == "manual"):
+        AUTO = False
+    return getMode()
+
 
 @webiopi.macro
 def update():
-	global auto = [0,0,0,0,0,0,0,0]
-	global jamon = [0,0,0,0,0,0,0,0]
-	global jamoff = [0,0,0,0,0,0,0,0]
-	global meniton = [0,0,0,0,0,0,0,0]
-	global menitoff = [0,0,0,0,0,0,0,0]
+    global auto
+    global jamon
+    global jamoff
+    global meniton
+    global menitoff
 
-	db = MySQLdb.connect("localhost","root","1214174","monitoring")
-	cursor = db.cursor()
-	cursor.execute("SELECT * FROM lampu")
-	data=cursor.fetchall()
-	
-	i = 0
-	for col in data:
-		auto[i] = col[2]
-		jamon[i] = col[3]
-		meniton[i] = col[4]
-		jamoff[i] = col[5]
-		menitoff[i] = col[6]	
-		i = i+1
-	db.close()
-	
-	return
+    auto = [0,0,0,0,0,0,0,0]
+    jamon = [0,0,0,0,0,0,0,0]
+    jamoff = [0,0,0,0,0,0,0,0]
+    meniton = [0,0,0,0,0,0,0,0]
+    menitoff = [0,0,0,0,0,0,0,0]
 
-def match(auto,jamon,jamoff,meniton,menitoff):
-	now = datetime.datime.now()
+
+    db = MySQLdb.connect("localhost","root","cherry","monitoring")
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM lampu")
+    data=cursor.fetchall()
+#    print ("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!!!!!!!!")
+    i = 0
+    for col in data:
+	   auto[i] = col[2]
+	   jamon[i] = col[3]
+	   meniton[i] = col[4]
+	   jamoff[i] = col[5]
+	   menitoff[i] = col[6]	
+	   i = i+1
+    db.close()
+
+#    return auto	
+    return "%d;%d;%d;%d;%d;%d;%d;%d" % (auto[0],auto[1],auto[2],auto[3],auto[4],auto[5],auto[6],auto[7])
+#    return "%d;%d" % (auto[0],auto[1])
+
+
+
+
+
+def match(auto,jamon,jamoff,meniton,menitoff,mcp,mcp2):
+	now = datetime.datetime.now()
 	
 	#LAMPU 0
 	if (auto[0]==1):
@@ -277,8 +394,22 @@ def match(auto,jamon,jamoff,meniton,menitoff):
 
 	return
 
-def initauto(auto,jamon,jamoff,meniton,menitoff):
-	now = datetime.datetime.now()
+def initauto(auto,jamon,jamoff,meniton,menitoff,mcp,mcp2):
+        db = MySQLdb.connect("localhost","root","cherry","monitoring")
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM lampu")
+        data=cursor.fetchall()
+
+        i = 0
+        for col in data:
+	   auto[i] = col[2]
+	   jamon[i] = col[3]
+	   meniton[i] = col[4]
+	   jamoff[i] = col[5]
+	   menitoff[i] = col[6]	
+	   i = i+1
+        db.close()
+ 	now = datetime.datetime.now()
 	i = 0
 	while (i<4):
 		if (auto[i]==1):
@@ -389,3 +520,7 @@ def initauto(auto,jamon,jamoff,meniton,menitoff):
 		i=i+1
 
 	return
+
+
+
+

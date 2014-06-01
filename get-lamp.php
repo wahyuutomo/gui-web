@@ -4,7 +4,7 @@
 	$command = $_POST['command'];
 	
 	if ($command=='auto'){
-		$koneksi=mysql_connect("localhost", "root", "1214174");
+		$koneksi=mysql_connect("localhost", "root", "cherry");
 		if ($koneksi){mysql_select_db("monitoring");}
 		$result = mysql_query("SELECT lampu.auto FROM monitoring.lampu");
 		
@@ -20,7 +20,7 @@
 	}
 	
 	if ($command=='jamon'){
-		$koneksi=mysql_connect("localhost", "root", "1214174");
+		$koneksi=mysql_connect("localhost", "root", "cherry");
 		if ($koneksi){mysql_select_db("monitoring");}
 		$result = mysql_query("SELECT lampu.jam_on FROM monitoring.lampu");
 		
@@ -36,7 +36,7 @@
 	}
 	
 	if ($command=='jamoff'){
-		$koneksi=mysql_connect("localhost", "root", "1214174");
+		$koneksi=mysql_connect("localhost", "root", "cherry");
 		if ($koneksi){mysql_select_db("monitoring");}
 		$result = mysql_query("SELECT lampu.jam_off FROM monitoring.lampu");
 		
@@ -52,7 +52,7 @@
 	}
 	
 	if ($command=='meniton'){
-		$koneksi=mysql_connect("localhost", "root", "1214174");
+		$koneksi=mysql_connect("localhost", "root", "cherry");
 		if ($koneksi){mysql_select_db("monitoring");}
 		$result = mysql_query("SELECT lampu.menit_on FROM monitoring.lampu");
 		
@@ -68,7 +68,7 @@
 	}	
 	
 	if ($command=='menitoff'){
-		$koneksi=mysql_connect("localhost", "root", "1214174");
+		$koneksi=mysql_connect("localhost", "root", "cherry");
 		if ($koneksi){mysql_select_db("monitoring");}
 		$result = mysql_query("SELECT lampu.menit_off FROM monitoring.lampu");
 		

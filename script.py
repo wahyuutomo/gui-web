@@ -106,7 +106,7 @@ def loop():
         print "jam sekarang = %d:%d:%d"%(now.hour,now.minute,now.second)
         print "set point : %d"%TEMP
 #        getsetpoint()
-        match(auto,jamon,jamoff,meniton,menitoff,mcp,mcp2)
+        match(auto,jamon,jamoff,meniton,menitoff,mcp4)
 
         if (now.second<2):
            print "auto = %d,%d,%d,%d,%d,%d,%d,%d"%(auto[0],auto[1],auto[2],auto[3],auto[4],auto[5],auto[6],auto[7])

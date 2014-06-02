@@ -23,6 +23,7 @@
 			mcp = new GPIOPort("mcp");
 			mcp2 = new GPIOPort("mcp2");
 			mcp3 = new GPIOPort("mcp3");
+			mcp4 = new GPIOPort("mcp4");
 			tmp = new Temperature("tmp");
 
 			var updateauto = function(macro, args, response) {
@@ -42,69 +43,84 @@
 		webiopi().callMacro("update", [], updateauto);
         
         $("#btn-home").click(function(){
-			w().toggleValue(7);
+//			webiopi().toggleValue(7);
+			for (var x=0;x<8;x++){
+	         	mcp.digitalWrite(x, 0);
+	         	mcp2.digitalWrite(x, 0);
+	         	mcp4.digitalWrite(x, 1);
+			}
+			//alert('yeah');
 			});
 			        
         $("#btn-away").click(function(){
-			w().toggleValue(11);
+//			w().toggleValue(11);
+			for (var x=0;x<8;x++){
+	         	mcp.digitalWrite(x, 1);
+	         	mcp2.digitalWrite(x, 1);
+	         	mcp4.digitalWrite(x, 0);
+			}
+
+
 			});
 
         $("#btn-alert").click(function(){
-			w().toggleValue(8);
+//			w().toggleValue(8);
+
+		for (var k=0;k<10;k++){
+
+			for (var x=0;x<8;x++){
+	         	mcp.digitalWrite(x, 0);
+	         	mcp2.digitalWrite(x, 0);
+	         	mcp4.digitalWrite(x, 1);
+			}
+
+			sleep(500);			
+			for (var x=0;x<8;x++){
+	         	mcp.digitalWrite(x, 1);
+	         	mcp2.digitalWrite(x, 1);
+	         	mcp4.digitalWrite(x, 0);
+			}
+			
+
+		}	
+	
 			});
 
 
 
 //*
-	$('#switch0').change(function () {
-	    toggleswitch0(mcp);
+	$('#switch40').change(function () {
+	    toggleswitch0(mcp4);
 	 });
 	
-	$('#switch1').change(function () {
-	    toggleswitch1(mcp);
+	$('#switch41').change(function () {
+	    toggleswitch1(mcp4);
 	 });
 
-	$('#switch2').change(function () {
-	    toggleswitch2(mcp);
+	$('#switch42').change(function () {
+	    toggleswitch2(mcp4);
 	 });
 
-	$('#switch3').change(function () {
-	    toggleswitch3(mcp);
+	$('#switch43').change(function () {
+	    toggleswitch3(mcp4);
 	 });
 
-	$('#switch20').change(function () {
-	    toggleswitch20(mcp2);
+	$('#switch44').change(function () {
+	    toggleswitch20(mcp4);
 	 });
 
-	$('#switch21').change(function () {
-	    toggleswitch21(mcp2);
+	$('#switch45').change(function () {
+	    toggleswitch21(mcp4);
 	 });
 
-	$('#switch22').change(function () {
-	    toggleswitch22(mcp2);
+	$('#switch46').change(function () {
+	    toggleswitch22(mcp4);
 	 });
 
-	$('#switch23').change(function () {
-	    toggleswitch23(mcp2);
+	$('#switch47').change(function () {
+	    toggleswitch23(mcp4);
 	 });
 //*/
-//	$.ajax({
-//		type: 'POST',
-//		url: 'get-lamp.php',
-//		data: 'command=auto',
-//		dataType: 'json',
-//		cache: false,
-//		success: function(result) {
-//			if (result[0]=="1") {$('#autoo0').text('YES');} else {$('#autoo0').text('NO');}
-//			if (result[1]=="1") {$('#autoo1').text('YES');} else {$('#autoo1').text('NO');}
-//			if (result[2]=="1") {$('#autoo2').text('YES');} else {$('#autoo2').text('NO');}
-//			if (result[3]=="1") {$('#autoo3').text('YES');} else {$('#autoo3').text('NO');}
-//			if (result[4]=="1") {$('#autoo4').text('YES');} else {$('#autoo4').text('NO');}
-//			if (result[5]=="1") {$('#autoo5').text('YES');} else {$('#autoo5').text('NO');}
-//			if (result[6]=="1") {$('#autoo6').text('YES');} else {$('#autoo6').text('NO');}
-//			if (result[7]=="1") {$('#autoo7').text('YES');} else {$('#autoo7').text('NO');}
-//		},
-//		});
 					
 		// refresh UI each seconds
 		setInterval(updateUI, 3000);
@@ -112,6 +128,16 @@
         }
 		
 	// function called through setInterval
+	function sleep(milliseconds) {
+	  var start = new Date().getTime();
+	  for (var i = 0; i < 1e7; i++) {
+	    if ((new Date().getTime() - start) > milliseconds){
+	      break;
+	    }
+	  }
+	}
+
+
     function updateUI() {
 	 // call MCP.digitalRead 0 to 7 REST API
 		if (mcp.isReady()) {
@@ -119,7 +145,7 @@
 			{
 			mcp.digitalRead(i, DigitalCallback);	 
 			mcp2.digitalRead(i, DigitalCallback2);
-			mcp3.digitalRead(i, DigitalCallback3);
+			mcp4.digitalRead(i, DigitalCallback4);
 			}
 	        }
 	    }		
@@ -210,11 +236,11 @@ respond.min.js"></script>
 						<div class="content">
 						<h3 align="left"><strong>Shortcut</strong></h3	>
 						<br>
-						<form class="form-group" align="center">
+						<div class="form-group" align="center">
 							<button class="btn btn-success btn-lg" id="btn-home">Home</button>
 							<button class="btn btn-success btn-lg" id="btn-away">Away</button>
 							<button class="btn btn-success btn-lg" id="btn-alert">Alert</button>
-						</form>	
+						</div>	
 							
 						<p align="right"><a href="setting.html">setting shortcut</a></p>
 						</div>
@@ -253,8 +279,8 @@ respond.min.js"></script>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch0">
-								<label class="onoffswitch-label" for="switch0"><div class="onoffswitch-inner"></div>
+								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch40">
+								<label class="onoffswitch-label" for="switch40"><div class="onoffswitch-inner"></div>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
 						</div>
@@ -271,8 +297,8 @@ respond.min.js"></script>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch1">
-								<label class="onoffswitch-label" for="switch1"><div class="onoffswitch-inner"></div>
+								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch41">
+								<label class="onoffswitch-label" for="switch41"><div class="onoffswitch-inner"></div>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
 						</div>
@@ -289,8 +315,8 @@ respond.min.js"></script>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch2">
-								<label class="onoffswitch-label" for="switch2"><div class="onoffswitch-inner"></div>
+								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch42">
+								<label class="onoffswitch-label" for="switch42"><div class="onoffswitch-inner"></div>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
 						</div>
@@ -307,8 +333,8 @@ respond.min.js"></script>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch3">
-								<label class="onoffswitch-label" for="switch3"><div class="onoffswitch-inner"></div>
+								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch43">
+								<label class="onoffswitch-label" for="switch43"><div class="onoffswitch-inner"></div>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
 						</div>
@@ -325,8 +351,8 @@ respond.min.js"></script>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch20">
-								<label class="onoffswitch-label" for="switch20"><div class="onoffswitch-inner"></div>
+								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch44">
+								<label class="onoffswitch-label" for="switch44"><div class="onoffswitch-inner"></div>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
 						</div>
@@ -343,8 +369,8 @@ respond.min.js"></script>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch21">
-								<label class="onoffswitch-label" for="switch21"><div class="onoffswitch-inner"></div>
+								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch45">
+								<label class="onoffswitch-label" for="switch45"><div class="onoffswitch-inner"></div>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
 						</div>
@@ -361,8 +387,8 @@ respond.min.js"></script>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch22">
-								<label class="onoffswitch-label" for="switch22"><div class="onoffswitch-inner"></div>
+								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch46">
+								<label class="onoffswitch-label" for="switch46"><div class="onoffswitch-inner"></div>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
 						</div>
@@ -379,8 +405,8 @@ respond.min.js"></script>
 						</div>
 						<div class="col-xs-4 col-md-4 col-lg-4" align="center">
 							<div class="onoffswitch">
-								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch23">
-								<label class="onoffswitch-label" for="switch23"><div class="onoffswitch-inner"></div>
+								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch47">
+								<label class="onoffswitch-label" for="switch47"><div class="onoffswitch-inner"></div>
 								<div class="onoffswitch-switch"></div></label>
 							</div>
 						</div>
